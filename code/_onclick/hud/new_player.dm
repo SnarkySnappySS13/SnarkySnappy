@@ -216,12 +216,12 @@
 		return
 
 	if(!SSticker?.IsRoundInProgress())
-		to_chat(new_player, span_boldwarning("The round is either not ready, or has already finished..."))
+		to_chat(hud.mymob, span_boldwarning("The round is either not ready, or has already finished..."))
 		return
 
-	if(new_player.client?.check_overwatch())
-		to_chat(new_player, span_warning("Please wait until your connection has been authenticated before joining."))
-		message_admins("[new_player.key] tried to use the Join button but failed the overwatch check.")
+	if(hud.mymob.client?.check_overwatch())
+		to_chat(hud.mymob, span_warning("Kindly wait until your connection has been authenticated before joining"))
+		message_admins("[hud.mymob.key] tried to use the Join button but failed the overwatch check.")
 		return
 
 	//Determines Relevent Population Cap
@@ -296,57 +296,17 @@
 	set_button_status(TRUE)
 	UnregisterSignal(SSticker, COMSIG_TICKER_ENTER_PREGAME)
 
-/atom/movable/screen/lobby/button/patreon_link
-	icon = 'icons/hud/lobby/bottom_buttons.dmi'
-	icon_state = "patreon"
-	base_icon_state = "patreon"
-	screen_loc = "TOP:-126,CENTER:86"
-
-/atom/movable/screen/lobby/button/patreon_link/Click(location, control, params)
-	. = ..()
-	if(!.)
-		return
-	if(!CONFIG_GET(string/patreon_link_website))
-		return
-	hud.mymob.client << link("[CONFIG_GET(string/patreon_link_website)]?ckey=[hud.mymob.client.ckey]")
-
 /atom/movable/screen/lobby/button/intents
 	icon = 'icons/hud/lobby/bottom_buttons.dmi'
 	icon_state = "intents"
 	base_icon_state = "intents"
-	screen_loc = "TOP:-126,CENTER:62"
+	screen_loc = "TOP:-126,CENTER:14"
 
 /atom/movable/screen/lobby/button/intents/Click(location, control, params)
 	. = ..()
 	var/datum/persistent_client/persistent_client = hud.mymob.persistent_client
 	persistent_client.challenge_menu ||= new(persistent_client)
 	persistent_client.challenge_menu.ui_interact(hud.mymob)
-
-/atom/movable/screen/lobby/button/discord
-	icon = 'icons/hud/lobby/bottom_buttons.dmi'
-	icon_state = "discord"
-	base_icon_state = "discord"
-	screen_loc = "TOP:-126,CENTER:38"
-
-/atom/movable/screen/lobby/button/discord/Click(location, control, params)
-	. = ..()
-	if(!.)
-		return
-	hud.mymob.client << link("https://discord.monkestation.com")
-
-/atom/movable/screen/lobby/button/twitch
-	icon = 'icons/hud/lobby/bottom_buttons.dmi'
-	icon_state = "info"
-	base_icon_state = "info"
-	screen_loc = "TOP:-126,CENTER:14"
-
-/atom/movable/screen/lobby/button/twitch/Click(location, control, params)
-	. = ..()
-	if(!.)
-		return
-	if(!CONFIG_GET(string/twitch_link_website))
-		return
-	hud.mymob.client << link("[CONFIG_GET(string/twitch_link_website)]?ckey=[hud.mymob.client.ckey]")
 
 /atom/movable/screen/lobby/button/settings
 	icon = 'icons/hud/lobby/bottom_buttons.dmi'
@@ -483,11 +443,11 @@
 	var/port = world.port
 	switch(port)
 		if(HRP_PORT) //HRP
-			screen_loc = "TOP:-39,CENTER:+215"
+			screen_loc = "TOP:-32,CENTER:+215"
 		if(MRP_PORT) //MRP
-			screen_loc = "TOP:-72,CENTER:+215"
+			screen_loc = "TOP:-65,CENTER:+215"
 		if(MRP2_PORT) //MRP2
-			screen_loc = "TOP:-105,CENTER:+215"
+			screen_loc = "TOP:-98,CENTER:+215"
 		else     //Sticks it in the middle, "TOP:0,CENTER:+128" will point at the MonkeStation logo itself.
 			screen_loc = "TOP:0,CENTER:+128"
 
@@ -528,69 +488,6 @@
 			type = MESSAGE_TYPE_INFO,
 		)
 		hud.mymob.client << link(server_link)
-
-//HRP MONKE - Monkeris
-/atom/movable/screen/lobby/button/server/hrp
-	icon = 'icons/hud/lobby/sister_server_buttons_large.dmi'
-	base_icon_state = "erisbutton_serverwip"
-	screen_loc = "TOP:-46,CENTER:+173"
-	server_name = "CEV-ERIS (HRP)"
-	server_port = HRP_PORT
-
-/atom/movable/screen/lobby/button/server/hrp/should_be_up(day, hour)
-	return FALSE
-
-/atom/movable/screen/lobby/button/server/hrp/update_icon_state(updates)
-	. = ..()
-	icon_state = base_icon_state
-
-//MAIN MONKE (MEDIUM RARE)
-/atom/movable/screen/lobby/button/server/mrp
-	base_icon_state = "mrp"
-	screen_loc = "TOP:-84,CENTER:+173"
-	enabled = TRUE
-	server_name = "Medium-Rare Roleplay (MRP)"
-	server_port = MRP_PORT
-
-//MRP 2 MONKE (MEDIUM WELL)
-/atom/movable/screen/lobby/button/server/mrp2
-	screen_loc = "TOP:-117,CENTER:+173"
-	base_icon_state = "mrp2"
-	server_name = "Medium-Well (MRP)"
-	server_port = MRP2_PORT
-
-//bottom button is "TOP:-140,CENTER:+177"
-//The Vanderlin Project
-/atom/movable/screen/lobby/button/server/vanderlin
-	icon = 'icons/hud/lobby/vanderlin_button.dmi'
-	base_icon_state = "vanderlin"
-	screen_loc = "TOP:-147,CENTER:+179"
-	server_name = "Vanderlin"
-	server_port = VANDERLIN_PORT
-	layer = LOBBY_BACKGROUND_LAYER
-
-/atom/movable/screen/lobby/button/server/vanderlin/should_be_up(day, hour)
-	return TRUE
-/*
-	switch(day)
-		if(FRIDAY)
-			return (hour >= 15)
-		if(SATURDAY, SUNDAY)
-			return TRUE
-	return FALSE
-*/
-
-//Monke button
-/atom/movable/screen/lobby/button/ook
-	screen_loc = "TOP:-126,CENTER:110"
-	icon = 'icons/hud/lobby/bottom_buttons.dmi'
-	icon_state = "monke"
-	base_icon_state = "monke"
-
-/atom/movable/screen/lobby/button/ook/Click(location, control, params)
-	. = ..()
-	if(.)
-		SEND_SOUND(usr, 'monkestation/sound/misc/menumonkey.ogg')
 
 /atom/movable/screen/lobby/overflow_alert
 	screen_loc = "TOP:-48,CENTER-2.7"
