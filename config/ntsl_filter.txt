@@ -4,8 +4,8 @@
 #
 # Examples:
 #
-# fuck=duck
-# 	This would replace all instances of "fuck" with duck. So "fucking" would become "ducking".
+# fuck=luck
+# 	This would replace all instances of "fuck" with luck. So "fucking" would become "lucking".
 #
 # fu+ck=duck
 #	This would do the same as above, except it would accept one or more "u". So "fuuuuuck" would become "duck".

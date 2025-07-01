@@ -30,7 +30,7 @@ map deltastation
 endmap
 
 map kilostation
-	minplayers 5
+	minplayers 10
 	disabled
 endmap
 
