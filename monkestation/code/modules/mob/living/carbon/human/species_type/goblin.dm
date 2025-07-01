@@ -38,7 +38,7 @@
     race = /datum/species/goblin
 
 /datum/species/goblin/get_species_description()
-	return "A species of short humanoids. Hailing from Gatosh, they live in cities built on the crumbling remains of the previous civilization, or travel nomadically through the desert that covers most of the planet."
+	return "The bio-engineered form of humanity's finest, many of those with wealth and power willingly underwent the process of transformation into a body designed for their superior intellect, despite their differences and the treatment of many alien species aboard Nanotrasen stations, Central Command would like to remind you that are just as human as the rest of us, and probably know someone who could get you fired, if they can't do that themselves."
 
 /datum/species/goblin/create_pref_unique_perks()
 	var/list/to_add = list()
