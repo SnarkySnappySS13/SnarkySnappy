@@ -62,7 +62,7 @@
 	id = "micro_bluespace"
 	display_name = "Miniaturized Bluespace Research"
 	description = "Extreme reduction in space required for bluespace engines, leading to portable bluespace technology."
-	prereq_ids = list("bluespace_travel", "practical_bluespace", "high_efficiency")
+	prereq_ids = list("bluespace_travel", "practical_bluespace")
 	design_ids = list(
 		"bluespacebodybag",
 		"medicalbed_emergency",

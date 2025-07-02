@@ -119,7 +119,7 @@
 	id = "combat_cyber_implants"
 	display_name = "Combat Cybernetic Implants"
 	description = "Military grade combat implants to improve performance."
-	prereq_ids = list("adv_cyber_implants","weaponry","NVGtech","high_efficiency")
+	prereq_ids = list("adv_cyber_implants","weaponry","NVGtech")
 	design_ids = list(
 		"ci-antidrop",
 		"ci-antistun",

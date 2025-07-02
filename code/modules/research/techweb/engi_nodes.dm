@@ -175,7 +175,7 @@
 	id = "NVGtech"
 	display_name = "Night Vision Technology"
 	description = "Allows seeing in the dark without actual light!"
-	prereq_ids = list("integrated_HUDs", "adv_engi", "emp_adv")
+	prereq_ids = list("integrated_HUDs", "adv_engi")
 	design_ids = list(
 		"diagnostic_hud_night",
 		"health_hud_night",

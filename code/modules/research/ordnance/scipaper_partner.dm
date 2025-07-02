@@ -67,8 +67,6 @@
 		"engineering" = TECHWEB_TIER_2_POINTS,
 		"adv_engi" = TECHWEB_TIER_2_POINTS,
 		"emp_super" = TECHWEB_TIER_1_POINTS,
-		"emp_adv" = TECHWEB_DISCOUNT_MINOR * 2.5,
-		"high_efficiency" = TECHWEB_TIER_2_POINTS,
 		"micro_bluespace" = TECHWEB_TIER_2_POINTS,
 		"adv_power" = TECHWEB_DISCOUNT_MINOR * 2.5,
 	)

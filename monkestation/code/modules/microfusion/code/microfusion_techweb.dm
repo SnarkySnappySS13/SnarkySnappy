@@ -16,7 +16,6 @@
 		"basic_microfusion",
 		"engineering",
 		"weaponry",
-		"high_efficiency",
 	)
 	design_ids = list(
 		"enhanced_microfusion_cell",
@@ -54,14 +53,13 @@
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_2_POINTS)
 
 
-// Bluespace microfusion
+// Bluespace microfusion lmao
 /datum/techweb_node/bluespace_microfusion
 	id = "bluespace_microfusion"
 	display_name = "Bluespace Microfusion Technology"
 	description = "Bluespace tinkering plus microfusion technology!"
 	prereq_ids = list(
 		"advanced_microfusion",
-		"bluespace_power",
 		"beam_weapons",
 		"chemical_weapons",
 	)

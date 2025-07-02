@@ -1,7 +1,5 @@
 #define SOLAR_GEN_RATE 1500
 #define OCCLUSION_DISTANCE 20
-#define PANEL_Z_OFFSET 13
-#define PANEL_EDGE_Z_OFFSET (PANEL_Z_OFFSET - 2)
 
 /obj/machinery/power/solar
 	name = "solar panel"
@@ -33,8 +31,13 @@
 /obj/machinery/power/solar/Initialize(mapload, obj/item/solar_assembly/S)
 	. = ..()
 
-	panel_edge = add_panel_overlay("solar_panel_edge", PANEL_EDGE_Z_OFFSET)
-	panel = add_panel_overlay("solar_panel", PANEL_Z_OFFSET)
+	panel = new()
+	panel.vis_flags = VIS_INHERIT_ID|VIS_INHERIT_ICON|VIS_INHERIT_PLANE
+	vis_contents += panel
+	panel.icon = icon
+	panel.icon_state = "solar_panel"
+	panel.layer = FLY_LAYER
+	panel.plane = ABOVE_GAME_PLANE
 
 	Make(S)
 	connect_to_network()
@@ -55,14 +58,6 @@
 	vis_flags = VIS_INHERIT_ID | VIS_INHERIT_ICON
 	appearance_flags = TILE_BOUND
 	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
-
-/obj/machinery/power/solar/proc/add_panel_overlay(icon_state, z_offset)
-	var/obj/effect/overlay/solar_panel/overlay = new(src)
-	overlay.icon_state = icon_state
-	SET_PLANE_EXPLICIT(overlay, ABOVE_GAME_PLANE, src)
-	overlay.pixel_z = z_offset
-	vis_contents += overlay
-	return overlay
 
 /obj/machinery/power/solar/should_have_node()
 	return TRUE
@@ -116,10 +111,6 @@
 	if(.)
 		playsound(loc, 'sound/effects/glassbr3.ogg', 100, TRUE)
 		unset_control()
-		// Make sure user can see it's broken
-		var/new_angle = rand(160, 200)
-		visually_turn(new_angle)
-		azimuth_current = new_angle
 
 /obj/machinery/power/solar/deconstruct(disassembled = TRUE)
 	if(!(flags_1 & NODECONSTRUCT_1))
@@ -136,8 +127,10 @@
 
 /obj/machinery/power/solar/update_overlays()
 	. = ..()
+	var/matrix/turner = matrix()
+	turner.Turn(azimuth_current)
+	panel.transform = turner
 	panel.icon_state = "solar_panel[(machine_stat & BROKEN) ? "-b" : null]"
-	panel_edge.icon_state = "solar_panel[(machine_stat & BROKEN) ? "-b" : "_edge"]"
 
 /obj/machinery/power/solar/proc/queue_turn(azimuth)
 	needs_to_turn = TRUE
@@ -148,50 +141,12 @@
 
 	needs_to_update_solar_exposure = TRUE //updating right away would be wasteful if we're also turning later
 
-/**
- * Get the 2.5D transform for the panel, given an angle
- * Arguments:
- * * angle - the angle the panel is facing
- */
-/obj/machinery/power/solar/proc/get_panel_transform(angle)
-	// 2.5D solar panel works by using a magic combination of transforms
-	var/matrix/turner = matrix()
-	// Rotate towards sun
-	turner.Turn(angle)
-	// "Tilt" the panel in 3D towards East and West
-	turner.Shear(0, -0.6 * sin(angle))
-	// Make it skinny when facing north (away), fat south
-	turner.Scale(1, 0.85 * (cos(angle) * -0.5 + 0.5) + 0.15)
-
-	return turner
-
-/obj/machinery/power/solar/proc/visually_turn_part(part, angle)
-	var/mid_azimuth = (azimuth_current + angle) / 2
-
-	// actually flip to other direction?
-	if(abs(angle - azimuth_current) > 180)
-		mid_azimuth = (mid_azimuth + 180) % 360
-
-	// Split into 2 parts so it doesn't distort on large changes
-	animate(part,
-		transform = get_panel_transform(mid_azimuth),
-		time = 2.5 SECONDS, easing = CUBIC_EASING|EASE_IN
-	)
-	animate(
-		transform = get_panel_transform(angle),
-		time = 2.5 SECONDS, easing = CUBIC_EASING|EASE_OUT
-	)
-
-/obj/machinery/power/solar/proc/visually_turn(angle)
-	visually_turn_part(panel, angle)
-	visually_turn_part(panel_edge, angle)
-
 /obj/machinery/power/solar/proc/update_turn()
 	needs_to_turn = FALSE
 	if(azimuth_current != azimuth_target)
-		visually_turn(azimuth_target)
 		azimuth_current = azimuth_target
 		occlusion_setup()
+		update_appearance()
 		needs_to_update_solar_exposure = TRUE
 
 ///trace towards sun to see if we're in shadow
@@ -285,10 +240,6 @@
 	if(!anchored && !pixel_x && !pixel_y)
 		randomise_offset(random_offset)
 
-/obj/item/solar_assembly/update_icon_state()
-	. = ..()
-	icon_state = tracker ? "tracker_base" : "sp_base"
-
 /obj/item/solar_assembly/proc/randomise_offset(amount)
 	pixel_x = base_pixel_x + rand(-amount, amount)
 	pixel_y = base_pixel_y + rand(-amount, amount)
@@ -349,7 +300,6 @@
 			if(!user.temporarilyRemoveItemFromInventory(W))
 				return
 			tracker = TRUE
-			update_appearance()
 			qdel(W)
 			user.visible_message(span_notice("[user] inserts the electronics into the solar assembly."), span_notice("You insert the electronics into the solar assembly."))
 			return TRUE
@@ -357,7 +307,6 @@
 		if(W.tool_behaviour == TOOL_CROWBAR)
 			new /obj/item/electronics/tracker(src.loc)
 			tracker = FALSE
-			update_appearance()
 			user.visible_message(span_notice("[user] takes out the electronics from the solar assembly."), span_notice("You take out the electronics from the solar assembly."))
 			return TRUE
 	return ..()
@@ -389,25 +338,13 @@
 	var/obj/machinery/power/tracker/connected_tracker = null
 	var/list/connected_panels = list()
 
-	///History of power supply
-	var/list/history = list()
-	///Size of history, should be equal or bigger than the solar cycle
-	var/record_size = 0
-	///Interval between records
-	var/record_interval = 60 SECONDS
-	///History record timer
-	var/next_record = 0
-
 /obj/machinery/power/solar_control/Initialize(mapload)
 	. = ..()
+	azimuth_rate = SSsun.base_rotation
 	RegisterSignal(SSsun, COMSIG_SUN_MOVED, PROC_REF(timed_track))
 	connect_to_network()
 	if(powernet)
 		set_panels(azimuth_target)
-	azimuth_rate = SSsun.base_rotation
-	record_interval = SSsun.wait
-	history["supply"] = list()
-	history["capacity"] = list()
 
 /obj/machinery/power/solar_control/Destroy()
 	for(var/obj/machinery/power/solar/M in connected_panels)
@@ -435,26 +372,6 @@
 					if(!T.control) //i.e unconnected
 						T.set_control(src)
 
-///Record the generated power supply and capacity for history
-/obj/machinery/power/solar_control/proc/record()
-	if(record_size == 0)
-		record_size = 1 + ROUND_UP(360 / (azimuth_rate * abs(SSsun.azimuth_mod))) //History contains full sun cycle
-
-	if(world.time >= next_record)
-		next_record = world.time + record_interval
-
-		var/list/supply = history["supply"]
-		if(powernet)
-			supply += round(lastgen)
-		if(supply.len > record_size)
-			supply.Cut(1, 2)
-
-		var/list/capacity = history["capacity"]
-		if(powernet)
-			capacity += round(max(connected_panels.len, 1) * SOLAR_GEN_RATE)
-		if(capacity.len > record_size)
-			capacity.Cut(1, 2)
-
 /obj/machinery/power/solar_control/update_overlays()
 	. = ..()
 	if(machine_stat & NOPOWER)
@@ -475,15 +392,14 @@
 
 /obj/machinery/power/solar_control/ui_data()
 	var/data = list()
-	data["supply"] = round(lastgen)
-	data["capacity"] = connected_panels.len * SOLAR_GEN_RATE
+	data["generated"] = round(lastgen)
+	data["generated_ratio"] = data["generated"] / round(max(connected_panels.len, 1) * SOLAR_GEN_RATE)
 	data["azimuth_current"] = azimuth_target
 	data["azimuth_rate"] = azimuth_rate
 	data["max_rotation_rate"] = SSsun.base_rotation * 2
 	data["tracking_state"] = track
 	data["connected_panels"] = connected_panels.len
 	data["connected_tracker"] = (connected_tracker ? TRUE : FALSE)
-	data["history"] = history
 	return data
 
 /obj/machinery/power/solar_control/ui_act(action, params)
@@ -571,9 +487,9 @@
 /obj/machinery/power/solar_control/process()
 	lastgen = gen
 	gen = 0
+
 	if(connected_tracker && (!powernet || connected_tracker.powernet != powernet))
 		connected_tracker.unset_control()
-	record()
 
 ///Ran every time the sun updates.
 /obj/machinery/power/solar_control/proc/timed_track()
@@ -605,5 +521,3 @@
 
 #undef SOLAR_GEN_RATE
 #undef OCCLUSION_DISTANCE
-#undef PANEL_Z_OFFSET
-#undef PANEL_EDGE_Z_OFFSET
