@@ -106,7 +106,6 @@
 #define SPECIES_LIZARD "lizard"
 #define SPECIES_LIZARD_ASH "ashwalker"
 #define SPECIES_LIZARD_SILVER "silverscale"
-#define SPECIES_NIGHTMARE "nightmare"
 #define SPECIES_MONKEY "monkey"
 #define SPECIES_MOTH "moth"
 #define SPECIES_TUNDRA "tundra" //Monkestation Addition
@@ -117,6 +116,8 @@
 #define SPECIES_SKELETON "skeleton"
 #define SPECIES_SNAIL "snail"
 #define SPECIES_TALLBOY "tallboy"
+#define SPECIES_THOUGHER "thougher"
+#define SPECIES_THOUGH "though"
 #define SPECIES_VAMPIRE "vampire"
 #define SPECIES_ZOMBIE "zombie"
 #define SPECIES_ZOMBIE_INFECTIOUS "memezombie"
@@ -392,7 +393,7 @@
 #define INCORPOREAL_MOVE_SHADOW 2 /// leaves a trail of shadows
 #define INCORPOREAL_MOVE_JAUNT 3 /// is blocked by holy water/salt
 
-#define SHADOW_SPECIES_LIGHT_THRESHOLD 0.2
+#define THOUGH_SPECIES_LIGHT_THRESHOLD 0.2
 
 #define COOLDOWN_UPDATE_SET_MELEE "set_melee"
 #define COOLDOWN_UPDATE_ADD_MELEE "add_melee"
