@@ -6,3 +6,4 @@
 
 Lubeoot = Host
 SoyQuote = Host
+Nusoi = Game Master
