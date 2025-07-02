@@ -1,6 +1,6 @@
 /obj/item/clothing/head/costume/kitty
 	name = "kitty ears"
-	desc = "A pair of kitty ears. Meow!"
+	desc = "Comes with the parasitic brainworms!"
 	icon_state = "kitty"
 	color = "#999999"
 
@@ -22,7 +22,7 @@
 
 /obj/item/clothing/head/costume/rabbitears
 	name = "rabbit ears"
-	desc = "Wearing these makes you look useless."
+	desc = "Wearing these makes you valid."
 	icon_state = "bunny"
 
 	dog_fashion = /datum/dog_fashion/head/rabbit

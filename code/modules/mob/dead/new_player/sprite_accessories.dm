@@ -1569,10 +1569,6 @@
 
 // please make sure they're sorted alphabetically and categorized
 
-/datum/sprite_accessory/socks/ace_knee
-	name = "Knee-high (Ace)"
-	icon_state = "ace_knee"
-
 /datum/sprite_accessory/socks/bee_knee
 	name = "Knee-high (Bee)"
 	icon_state = "bee_knee"
@@ -1590,10 +1586,6 @@ MONKESTATION EDIT
 	name = "Knee-High (Freedom)"
 	icon_state = "assblastusa_knee"
 
-/datum/sprite_accessory/socks/rainbow_knee
-	name = "Knee-high (Rainbow)"
-	icon_state = "rainbow_knee"
-
 /datum/sprite_accessory/socks/striped_knee
 	name = "Knee-high (Striped)"
 	icon_state = "striped_knee"
@@ -1602,10 +1594,6 @@ MONKESTATION EDIT
 	name = "Knee-high (Thin)"
 	icon_state = "thin_knee"
 
-/datum/sprite_accessory/socks/trans_knee
-	name = "Knee-high (Trans)"
-	icon_state = "trans_knee"
-
 /datum/sprite_accessory/socks/uk_knee
 	name = "Knee-High (UK)"
 	icon_state = "uk_knee"
@@ -1613,11 +1601,6 @@ MONKESTATION EDIT
 /datum/sprite_accessory/socks/white_knee
 	name = "Knee-high (White)"
 	icon_state = "white_knee"
-
-
-/datum/sprite_accessory/socks/fishnet_knee
-	name = "Knee-high (Fishnet)"
-	icon_state = "fishnet_knee"
 
 /*
 MONKESTATION EDIT
@@ -1630,9 +1613,6 @@ MONKESTATION EDIT
 	name = "Normal (White)"
 	icon_state = "white_norm"
 
-/datum/sprite_accessory/socks/pantyhose
-	name = "Pantyhose"
-	icon_state = "pantyhose"
 /*
 MONKESTATION EDIT
 /datum/sprite_accessory/socks/black_short
@@ -1642,46 +1622,6 @@ MONKESTATION EDIT
 /datum/sprite_accessory/socks/white_short
 	name = "Short (White)"
 	icon_state = "white_short"
-
-/datum/sprite_accessory/socks/stockings_blue
-	name = "Stockings (Blue)"
-	icon_state = "stockings_blue"
-
-/datum/sprite_accessory/socks/stockings_cyan
-	name = "Stockings (Cyan)"
-	icon_state = "stockings_cyan"
-
-/datum/sprite_accessory/socks/stockings_dpink
-	name = "Stockings (Dark Pink)"
-	icon_state = "stockings_dpink"
-
-/datum/sprite_accessory/socks/stockings_green
-	name = "Stockings (Green)"
-	icon_state = "stockings_green"
-
-/datum/sprite_accessory/socks/stockings_orange
-	name = "Stockings (Orange)"
-	icon_state = "stockings_orange"
-
-/datum/sprite_accessory/socks/stockings_programmer
-	name = "Stockings (Programmer)"
-	icon_state = "stockings_lpink"
-
-/datum/sprite_accessory/socks/stockings_purple
-	name = "Stockings (Purple)"
-	icon_state = "stockings_purple"
-
-/datum/sprite_accessory/socks/stockings_yellow
-	name = "Stockings (Yellow)"
-	icon_state = "stockings_yellow"
-
-/datum/sprite_accessory/socks/stockings_fishnet
-	name = "Stockings (Fishnet)"
-	icon_state = "fishnet_full"
-
-/datum/sprite_accessory/socks/ace_thigh
-	name = "Thigh-high (Ace)"
-	icon_state = "ace_thigh"
 
 /datum/sprite_accessory/socks/bee_thigh
 	name = "Thigh-high (Bee)"
@@ -1699,10 +1639,6 @@ MONKESTATION EDIT
 	name = "Thigh-high (Freedom)"
 	icon_state = "assblastusa_thigh"
 
-/datum/sprite_accessory/socks/rainbow_thigh
-	name = "Thigh-high (Rainbow)"
-	icon_state = "rainbow_thigh"
-
 /datum/sprite_accessory/socks/striped_thigh
 	name = "Thigh-high (Striped)"
 	icon_state = "striped_thigh"
@@ -1711,10 +1647,6 @@ MONKESTATION EDIT
 	name = "Thigh-high (Thin)"
 	icon_state = "thin_thigh"
 
-/datum/sprite_accessory/socks/trans_thigh
-	name = "Thigh-high (Trans)"
-	icon_state = "trans_thigh"
-
 /datum/sprite_accessory/socks/uk_thigh
 	name = "Thigh-high (UK)"
 	icon_state = "uk_thigh"
@@ -1722,10 +1654,6 @@ MONKESTATION EDIT
 /datum/sprite_accessory/socks/white_thigh
 	name = "Thigh-high (White)"
 	icon_state = "white_thigh"
-
-/datum/sprite_accessory/socks/fishnet_thigh
-	name = "Thigh-high (Fishnet)"
-	icon_state = "fishnet_thigh"
 
 /datum/sprite_accessory/socks/thocks
 	name = "Thocks"

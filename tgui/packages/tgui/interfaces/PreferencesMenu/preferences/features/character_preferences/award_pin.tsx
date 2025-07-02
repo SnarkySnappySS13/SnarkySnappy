@@ -1,6 +1,6 @@
 import { FeatureChoiced, FeatureDropdownInput } from '../base';
 
-export const pride_pin: FeatureChoiced = {
-  name: 'Pride Pin',
+export const award_pin: FeatureChoiced = {
+  name: 'Award Pin',
   component: FeatureDropdownInput,
 };

@@ -169,7 +169,7 @@
 				owner.emote("twitch")
 			if(2 to 3)
 //				owner.say("[prob(50) ? ";" : ""][pick("SHIT", "PISS", "FUCK", "MROW", "ANIMES", "LIZZZARD", "HELP")]", forced=name) // MONKESTATION EDIT OLD
-				owner.say("[prob(50) ? ";" : ""][pick("SHIT", "PISS", "FUCK", "MROW", "ANIMES", "LIZZZARD", "HELP")][GET_MUTATION_POWER(src) > 1 ? "!!" : ""]", forced=name) // MONKESTATION EDIT NEW
+				owner.say("[prob(50) ? ";" : ""][pick("SHIT", "PISS", "FUCK", "SOOT", "QUOTE", "KUZ", "DOLL")][GET_MUTATION_POWER(src) > 1 ? "!!" : ""]", forced=name) // MONKESTATION EDIT NEW
 		var/x_offset_old = owner.pixel_x
 		var/y_offset_old = owner.pixel_y
 		var/x_offset = owner.pixel_x + rand(-2,2)
