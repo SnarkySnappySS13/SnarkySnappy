@@ -174,10 +174,9 @@ GLOBAL_DATUM_INIT(orbit_menu, /datum/orbit_menu, new)
 		if(!mob_allowed_typecache)
 			mob_allowed_typecache = typecacheof(list(
 				/mob/camera,
-				/mob/living/basic/regal_rat,
+				/mob/living/basic/feral_squirrel,
 				/mob/living/simple_animal/bot,
 				/mob/living/simple_animal/hostile/megafauna,
-				/mob/living/basic/chicken/gary, // monkestation edit: gary
 			))
 		if(!is_type_in_typecache(potential_mob_poi, mob_allowed_typecache) && !potential_mob_poi.GetComponent(/datum/component/deadchat_control))
 			return FALSE

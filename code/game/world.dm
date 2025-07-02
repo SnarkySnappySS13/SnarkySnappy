@@ -379,8 +379,8 @@ GLOBAL_VAR(restart_counter)
 		var/server_name = CONFIG_GET(string/servername)
 		if (server_name)
 			new_status += "<b>[server_name]</b> "
-		if(!CONFIG_GET(flag/norespawn))
-			features += "respawn"
+		if(CONFIG_GET(flag/allow_respawn))
+			features += "respawn" // show "respawn" regardless of "respawn as char" or "free respawn"
 		if(!CONFIG_GET(flag/allow_ai))
 			features += "AI disabled"
 		hostedby = CONFIG_GET(string/hostedby)
@@ -398,8 +398,8 @@ GLOBAL_VAR(restart_counter)
 	if(length(features))
 		new_status += ": [jointext(features, ", ")]"
 
-	new_status += "<br>Beginner Friendly: <b>Learn to play SS13!</b>"
-	new_status += "<br>Roleplay: \[<b>Medium-Rare</b>\]"
+	new_status += "<br>Now with Nickacado Avacado as a playable antagonist! Lax Rules, Chill Jannies.</b>"
+	new_status += "<br>Roleplay: \[<b>A24 Slowburn Atmospheric Driven Kino With No Jumpscares, 100% Character-Driven</b>\]"
 
 	new_status += "<br>Time: <b>[gameTimestamp("hh:mm")]</b>"
 	if(SSmapping.current_map)

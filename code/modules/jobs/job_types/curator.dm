@@ -25,6 +25,7 @@
 
 	mail_goodies = list(
 		/obj/item/book/random = 44,
+		/obj/item/book/granter/action/spell/blind/wgw = 1,
 		/obj/item/book/manual/random = 5
 	)
 

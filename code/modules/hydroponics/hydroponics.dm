@@ -1,7 +1,7 @@
 
 /obj/machinery/hydroponics
 	name = "hydroponics tray"
-	icon = 'monkestation/icons/obj/machines/hydroponics.dmi'
+	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "hydrotray"
 	density = TRUE
 	pass_flags_self = PASSMACHINE | LETPASSTHROW
@@ -170,7 +170,7 @@
 
 /obj/machinery/hydroponics/constructable
 	name = "hydroponics tray"
-	icon = 'monkestation/icons/obj/machines/hydroponics.dmi'
+	icon = 'icons/obj/hydroponics/equipment.dmi'
 	icon_state = "hydrotray"
 
 /obj/machinery/hydroponics/constructable/Initialize(mapload)

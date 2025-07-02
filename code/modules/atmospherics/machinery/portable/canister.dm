@@ -78,8 +78,6 @@ GLOBAL_LIST_INIT(gas_id_to_canister, init_gas_id_to_canister())
 	var/timing = FALSE
 	///If true, the prototype canister requires engi access to be used
 	var/restricted = FALSE
-	///Window overlay showing the gas inside the canister
-	var/image/window
 
 	var/shielding_powered = FALSE
 
@@ -114,8 +112,6 @@ GLOBAL_LIST_INIT(gas_id_to_canister, init_gas_id_to_canister())
 
 	if(ispath(gas_type, /datum/gas))
 		desc = "[GLOB.meta_gas_info[gas_type][META_GAS_NAME]]. [GLOB.meta_gas_info[gas_type][META_GAS_DESC]]"
-
-	update_window()
 
 	var/random_quality = rand()
 	pressure_limit = initial(pressure_limit) * (1 + 0.2 * random_quality)
@@ -396,29 +392,6 @@ GLOBAL_LIST_INIT(gas_id_to_canister, init_gas_id_to_canister())
 	if(light_state) //happens when pressure is below 10kpa which means no light
 		. += mutable_appearance(canister_overlay_file, light_state)
 		. += emissive_appearance(canister_overlay_file, "[light_state]-light", src, alpha = src.alpha)
-
-	update_window()
-
-/obj/machinery/portable_atmospherics/canister/update_greyscale()
-	. = ..()
-	update_window()
-
-/obj/machinery/portable_atmospherics/canister/proc/update_window()
-	if(!air_contents)
-		return
-	var/static/alpha_filter
-	if(!alpha_filter) // Gotta do this separate since the icon may not be correct at world init
-		alpha_filter = filter(type="alpha", icon=icon(icon, "window-base"))
-
-	cut_overlay(window)
-	window = image(icon, icon_state="window-base", layer=FLOAT_LAYER)
-	var/list/window_overlays = list()
-	for(var/visual in air_contents.return_visuals(get_turf(src)))
-		var/image/new_visual = image(visual, layer=FLOAT_LAYER)
-		new_visual.filters = alpha_filter
-		window_overlays += new_visual
-	window.overlays = window_overlays
-	add_overlay(window)
 
 // Both of these procs handle the external temperature damage.
 /obj/machinery/portable_atmospherics/canister/should_atmos_process(datum/gas_mixture/air, exposed_temperature)

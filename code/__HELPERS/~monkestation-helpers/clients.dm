@@ -39,10 +39,5 @@
 /proc/interview_safety(mob/target, context)
 	. = should_be_interviewing(target)
 	if(.)
-		message_admins(span_danger("<b>WARNING</b>: [ADMIN_SUSINFO(target)] has seemingly bypassed an interview! (context: [context]) <i>note: this detection is still wip, tell absolucy if it's causing false positives</i>"))
+		message_admins(span_danger("<b>WARNING</b>: [ADMIN_SUSINFO(target)] has seemingly bypassed an interview! (context: [context]) <i>note: This detection doesn't really work because these people aren't bypassing interviews</i>"))
 		log_admin_private("[key_name(target)] has seemingly bypassed an interview! (context: [context])")
-		if(isnewplayer(target))
-			var/mob/dead/new_player/dingbat = target
-			if(dingbat.ready == PLAYER_READY_TO_PLAY)
-				dingbat.ready = PLAYER_NOT_READY
-				qdel(dingbat.client)

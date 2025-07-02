@@ -152,6 +152,9 @@
 	return JOB_AVAILABLE
 
 /mob/dead/new_player/proc/AttemptLateSpawn(rank)
+// Check that they're picking someone new for new character respawning (broken, fix later?)
+	if(CONFIG_GET(flag/allow_respawn) == RESPAWN_FLAG_NEW_CHARACTER)
+
 	if(interview_safety(src, "attempting to latejoin"))
 		qdel(client)
 		return FALSE

@@ -236,7 +236,7 @@
 	id = "adv_mecha_armor"
 	display_name = "Exosuit Heavy Armor Research"
 	description = "Recreating heavy armor with new rapid fabrication techniques."
-	prereq_ids = list("adv_mecha", "bluespace_power")
+	prereq_ids = list("adv_mecha")
 	design_ids = list(
 		"mech_ccw_armor",
 		"mech_proj_armor",
@@ -271,7 +271,7 @@
 	id = "mmech_ion"
 	display_name = "Exosuit Weapon (MKIV Ion Heavy Cannon)"
 	description = "An advanced piece of mech weaponry"
-	prereq_ids = list("electronic_weapons", "emp_adv")
+	prereq_ids = list("electronic_weapons")
 	design_ids = list(
 		"mech_ion",
 	)

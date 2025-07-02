@@ -21,7 +21,7 @@
 		spread_bodyparts(no_brain, no_organs, TRUE)
 
 	spawn_gibs(no_bodyparts)
-	///lol I want it to be bloody as fuck
+	///lol I want it to be bloody as fuck ok
 	blood_particles(5, min_deviation = 70, max_deviation = 120, min_pixel_z = 4, max_pixel_z = 11)
 	blood_particles(6, min_deviation = -70, max_deviation = -30, min_pixel_z = 5, max_pixel_z = 7)
 	blood_particles(4, min_deviation = -190, max_deviation = -80, min_pixel_z = 0, max_pixel_z = 9)

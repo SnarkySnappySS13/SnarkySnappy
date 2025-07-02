@@ -3,7 +3,7 @@
 	desc = "A window."
 	icon_state = "window"
 	density = TRUE
-	layer = ABOVE_OBJ_LAYER //Just above doors
+	layer = ABOVE_OBJ_LAYER //Just above doors o algo
 	pressure_resistance = 4*ONE_ATMOSPHERE
 	anchored = TRUE //initially is 0 for tile smoothing
 	flags_1 = ON_BORDER_1
@@ -84,8 +84,6 @@
 			glass_color = new_color
 		if(fulltile)
 			color = glass_color
-		if(mapload && fulltile)
-			new /obj/structure/window_sill(get_turf(src))
 	//monkestation edit end
 
 /obj/structure/window/examine(mob/user)

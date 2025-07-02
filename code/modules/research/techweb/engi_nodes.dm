@@ -1,13 +1,12 @@
 /datum/techweb_node/engineering
 	id = "engineering"
-	display_name = "Industrial Engineering"
+	display_name = "Industrial Engineering + Tier Two Parts"
 	description = "A refresher course on modern engineering technology."
 	prereq_ids = list("base")
 	design_ids = list(
 		"adv_capacitor",
 		"adv_matter_bin",
 		"adv_scanning",
-		"airlock_board_offstation", //MONKESTATION ADDITION - old airlock board for charlie station
 		"airalarm_electronics",
 		"airlock_board",
 		"anomaly_refinery",
@@ -30,6 +29,7 @@
 		"high_micro_laser",
 		"mesons",
 		"nano_mani",
+		"airlock_board_offstation", //MONKESTATION ADDITION - old airlock board for charlie station
 		"oxygen_tank",
 		"pacman",
 		"plasma_tank",
@@ -58,7 +58,7 @@
 		"teg-circ",
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
-	discount_experiments = list(/datum/experiment/scanning/random/material/easy = TECHWEB_TIER_3_POINTS)
+	discount_experiments = list(/datum/experiment/scanning/random/material/easy = TECHWEB_TIER_2_POINTS)
 
 /datum/techweb_node/adv_engi
 	id = "adv_engi"
@@ -84,10 +84,10 @@
 		"bolter_wrench",
 		"multi_cell_charger", //Monkestation addition
 	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_6_POINTS)
+	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_5_POINTS)
 	discount_experiments = list(
 		/datum/experiment/scanning/random/material/medium/one = TECHWEB_TIER_2_POINTS,
-		/datum/experiment/ordnance/gaseous/bz = TECHWEB_TIER_4_POINTS,
+		/datum/experiment/ordnance/gaseous/bz = TECHWEB_TIER_3_POINTS,
 	)
 
 /datum/techweb_node/telecomms
@@ -137,54 +137,14 @@
 	)
 	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
 
-/datum/techweb_node/emp_adv
-	id = "emp_adv"
-	display_name = "Advanced Electromagnetic Theory"
-	description = "Determining whether reversing the polarity will actually help in a given situation."
-	prereq_ids = list("emp_basic")
-	design_ids = list(
-		"ultra_micro_laser",
-	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_1_POINTS)
-	discount_experiments = list(/datum/experiment/scanning/points/machinery_pinpoint_scan/tier2_microlaser = TECHWEB_DISCOUNT_MINOR * 2.5)
-
-/datum/techweb_node/emp_super
-	id = "emp_super"
-	display_name = "Quantum Electromagnetic Technology" //bs
-	description = "Even better electromagnetic technology."
-	prereq_ids = list("emp_adv")
-	design_ids = list(
-		"quadultra_micro_laser",
-	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_6_POINTS)
-	discount_experiments = list(
-		/datum/experiment/scanning/points/machinery_pinpoint_scan/tier3_microlaser = TECHWEB_TIER_2_POINTS,
-		/datum/experiment/ordnance/gaseous/noblium = TECHWEB_TIER_4_POINTS,
-	)
-
-/datum/techweb_node/high_efficiency
-	id = "high_efficiency"
-	display_name = "High Efficiency Parts"
-	description = "Finely-tooled manufacturing techniques allowing for picometer-perfect precision levels."
-	prereq_ids = list("engineering", "datatheory")
-	design_ids = list(
-		"pico_mani",
-		"super_matter_bin",
-	)
-	research_costs = list(TECHWEB_POINT_TYPE_GENERIC = TECHWEB_TIER_3_POINTS)
-	discount_experiments = list(/datum/experiment/scanning/points/machinery_tiered_scan/tier2_lathes = TECHWEB_TIER_2_POINTS)
-
 /datum/techweb_node/adv_power
 	id = "adv_power"
 	display_name = "Advanced Power Manipulation"
 	description = "How to get more zap."
 	prereq_ids = list("engineering")
 	design_ids = list(
-		"hyper_cell",
 		"power_turbine_console",
 		"smes",
-		"super_capacitor",
-		"super_cell",
 		"turbine_compressor",
 		"turbine_rotor",
 		"turbine_stator",
@@ -215,7 +175,7 @@
 	id = "NVGtech"
 	display_name = "Night Vision Technology"
 	description = "Allows seeing in the dark without actual light!"
-	prereq_ids = list("integrated_HUDs", "adv_engi", "emp_adv")
+	prereq_ids = list("integrated_HUDs", "adv_engi")
 	design_ids = list(
 		"diagnostic_hud_night",
 		"health_hud_night",

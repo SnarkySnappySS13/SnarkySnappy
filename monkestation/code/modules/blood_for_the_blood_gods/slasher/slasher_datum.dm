@@ -117,7 +117,7 @@
 	ADD_TRAIT(current_mob, TRAIT_RESISTHIGHPRESSURE, "slasher")
 
 	var/mob/living/carbon/carbon = current_mob
-	var/obj/item/organ/internal/eyes/shadow/shadow = new
+	var/obj/item/organ/internal/eyes/though/shadow = new
 	shadow.Insert(carbon, drop_if_replaced = FALSE)
 
 	RegisterSignal(current_mob, COMSIG_LIVING_LIFE, PROC_REF(LifeTick))
