@@ -11,7 +11,7 @@
 	/obj/item/storage/backpack/duffelbag/xenobiologist = 2,
 	/obj/item/clothing/under/rank/rnd/xenobiologist = 2,
 	/obj/item/clothing/under/rank/rnd/xenobiologist/skirt = 2,
-	/obj/item/clothing/suit/toggle/labcoat/xenobiologist = 2,
+	/obj/item/clothing/suit/toggle/labcoat/science = 2,
 	/obj/item/clothing/shoes/winterboots = 2,
 	/obj/item/clothing/mask/gas = 2,
 	/obj/item/clothing/gloves/color/grey/protects_cold = 2,

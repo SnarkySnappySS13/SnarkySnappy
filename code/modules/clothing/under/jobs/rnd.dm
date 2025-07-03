@@ -126,23 +126,3 @@
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
-
-/obj/item/clothing/under/rank/rnd/scientist/utility
-	name = "science utility uniform"
-	desc = "A utility uniform worn by NT-certified Science staff."
-	icon_state = "util_sci"
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
-
-/obj/item/clothing/under/rank/rnd/scientist/utility/syndicate
-	desc = "A utility uniform worn by Science staff."
-	armor_type = /datum/armor/clothing_under/utility_syndicate
-	has_sensor = NO_SENSORS
-
-/obj/item/clothing/under/rank/rnd/scientist/hlscience
-	name = "science team uniform"
-	desc = "A simple semi-formal uniform consisting of a grayish-blue shirt and off-white slacks, paired with a ridiculous, but mandatory, tie."
-	icon_state = "hl_scientist"
-	can_adjust = FALSE
-	alternative_screams = list(	'monkestation/sound/voice/screams/misc/HL1 Scientist/scream_sci0.ogg',
-								'monkestation/sound/voice/screams/misc/HL1 Scientist/scream_sci1.ogg',
-								'monkestation/sound/voice/screams/misc/HL1 Scientist/scream_sci2.ogg')

@@ -3,19 +3,17 @@
 #define WAND_EMERGENCY "emergency"
 
 /obj/item/door_remote
-	icon_state = "remote_omni_open"
+	icon_state = "gangtool-white"
 	inhand_icon_state = "electronic"
 	lefthand_file = 'icons/mob/inhands/items/devices_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/devices_righthand.dmi'
-	icon = 'icons/obj/devices/remote.dmi' //monkestation edit
+	icon = 'icons/obj/devices/remote.dmi'
 	name = "control wand"
-	desc = "Remotely controls airlocks."
+	desc = "A remote for controlling a set of airlocks."
 	w_class = WEIGHT_CLASS_TINY
 	var/mode = WAND_OPEN
 	var/region_access = REGION_GENERAL
 	var/list/access_list
-	//monkestation addition: remote type for the purpose of updating the icon
-	var/remote_type = "omni"
 
 /obj/item/door_remote/Initialize(mapload)
 	. = ..()
@@ -30,7 +28,6 @@
 			mode = WAND_EMERGENCY
 		if(WAND_EMERGENCY)
 			mode = WAND_OPEN
-	icon_state = "remote_[remote_type]_[mode]" //monkestation addition
 	balloon_alert(user, "mode: [desc[mode]]")
 
 // Airlock remote works by sending NTNet packets to whatever it's pointed at.
@@ -76,8 +73,10 @@
 
 			if (airlock.locked)
 				airlock.unbolt()
+				log_combat(user, airlock, "unbolted", src)
 			else
 				airlock.bolt()
+				log_combat(user, airlock, "bolted", src)
 		if (WAND_EMERGENCY)
 			if (!istype(airlock))
 				target.balloon_alert(user, "only airlocks!")
@@ -88,51 +87,45 @@
 
 /obj/item/door_remote/omni
 	name = "omni door remote"
-	desc = "Remotely controls airlocks. This remote can access any door on the station." //monkestation edit
+	desc = "This control wand can access any door on the station."
+	icon_state = "gangtool-yellow"
 	region_access = REGION_ALL_STATION
 
 /obj/item/door_remote/captain
 	name = "command door remote"
-	icon_state = "remote_command_open" //monkestation edit
-	remote_type = "command" //monkestation edit
+	icon_state = "gangtool-yellow"
 	region_access = REGION_COMMAND
 
 /obj/item/door_remote/chief_engineer
 	name = "engineering door remote"
-	icon_state = "remote_engi_open" //monkestation edit
-	remote_type = "engi" //monkestation edit
+	icon_state = "gangtool-orange"
 	region_access = REGION_ENGINEERING
 
 /obj/item/door_remote/research_director
 	name = "research door remote"
-	icon_state = "remote_sci_open" //monkestation edit
-	remote_type = "sci" //monkestation edit
+	icon_state = "gangtool-purple"
 	region_access = REGION_RESEARCH
 
 /obj/item/door_remote/head_of_security
 	name = "security door remote"
-	icon_state = "remote_security_open" //monkestation edit
-	remote_type = "security" //monkestation edit
+	icon_state = "gangtool-red"
 	region_access = REGION_SECURITY
 
 /obj/item/door_remote/quartermaster
 	name = "supply door remote"
 	desc = "Remotely controls airlocks. This remote has additional Vault access."
-	icon_state = "remote_cargo_open" //monkestation edit
-	remote_type = "cargo" //monkestation edit
+	icon_state = "gangtool-green"
 	region_access = REGION_SUPPLY
 
 /obj/item/door_remote/chief_medical_officer
 	name = "medical door remote"
-	icon_state = "remote_med_open" //monkestation edit
-	remote_type = "med" //monkestation edit
+	icon_state = "gangtool-blue"
 	region_access = REGION_MEDBAY
 
 /obj/item/door_remote/civilian
-	name = "civilian+supply door remote"
-	icon_state = "remote_civilian_open" //monkestation edit
-	remote_type = "civilian" //monkestation edit
-	region_access = (REGION_GENERAL && REGION_SUPPLY) //monkestation addition
+	name = "civilian door remote"
+	icon_state = "gangtool-white"
+	region_access = REGION_GENERAL
 
 #undef WAND_OPEN
 #undef WAND_BOLT

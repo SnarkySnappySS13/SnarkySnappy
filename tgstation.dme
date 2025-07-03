@@ -7411,7 +7411,6 @@
 #include "monkestation\code\modules\clothing\suits\armor.dm"
 #include "monkestation\code\modules\clothing\suits\coats.dm"
 #include "monkestation\code\modules\clothing\suits\costume.dm"
-#include "monkestation\code\modules\clothing\suits\labcoat.dm"
 #include "monkestation\code\modules\clothing\suits\toggles.dm"
 #include "monkestation\code\modules\clothing\under\_under.dm"
 #include "monkestation\code\modules\clothing\under\bomb_vest.dm"

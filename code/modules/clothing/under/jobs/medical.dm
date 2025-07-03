@@ -132,14 +132,3 @@
 	dying_key = DYE_REGISTRY_JUMPSKIRT
 	female_sprite_flags = FEMALE_UNIFORM_TOP_ONLY
 	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION_NO_NEW_ICON
-
-/obj/item/clothing/under/rank/medical/doctor/utility
-	name = "medical utility uniform"
-	desc = "A utility uniform worn by Medical doctors."
-	icon_state = "util_med"
-	can_adjust = TRUE
-	supports_variations_flags = CLOTHING_DIGITIGRADE_VARIATION
-
-/obj/item/clothing/under/rank/medical/doctor/utility/syndicate
-	armor_type = /datum/armor/clothing_under/utility_syndicate
-	has_sensor = NO_SENSORS
