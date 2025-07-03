@@ -104,17 +104,3 @@
 	name = "interdyne labcoat"
 	desc = "More like an eccentric coat than a labcoat. Helps pass off bloodstains as part of the aesthetic. Comes with red shoulder pads."
 	icon_state = "labcoat_robo"
-
-/obj/item/clothing/suit/toggle/labcoat/xenobiologist
-	name = "xenobiologist labcoat"
-	desc = "A suit that protects against minor chemical spills. Has a pink stripe on the shoulder."
-	icon_state = "labcoat_xeno"
-
-/obj/item/clothing/suit/toggle/labcoat/xenobiologist/Initialize(mapload)
-	. = ..()
-	allowed += /obj/item/storage/bag/xeno
-
-/obj/item/clothing/suit/toggle/labcoat/medical
-	name = "medical labcoat"
-	desc = "A suit that protects against minor chemical spills. Has a light blue stripe on the shoulder."
-	icon_state = "labcoat_med"

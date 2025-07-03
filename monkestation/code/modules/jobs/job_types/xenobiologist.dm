@@ -44,7 +44,7 @@
 
 	id_trim = /datum/id_trim/job/xenobiologist
 	uniform = /obj/item/clothing/under/rank/rnd/xenobiologist
-	suit = /obj/item/clothing/suit/toggle/labcoat/xenobiologist
+	suit = /obj/item/clothing/suit/toggle/labcoat/science
 	belt = /obj/item/modular_computer/pda/xenobiologist
 	ears = /obj/item/radio/headset/headset_sci
 	shoes = /obj/item/clothing/shoes/winterboots

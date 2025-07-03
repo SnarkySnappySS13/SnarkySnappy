@@ -190,7 +190,7 @@
 	flags_inv = 0
 	strip_delay = 80
 
-//the one below this is bugged with no worn icon except its icon state im too lazy to fix it because im not sure if I even got the right old sprite so im just removing it from garment - lubeoot
+//the one below this is bugged with no worn icon except its icon state im too lazy to fix it because im not sure if I even got the right old sprite so im just removing it from garment o algo - lubeoot
 /obj/item/clothing/suit/armor/hos/trenchcoat/winter
 	name = "head of security's winter trenchcoat"
 	desc = "A trenchcoat enhanced with a special lightweight kevlar, padded with wool on the collar and inside. You feel strangely lonely wearing this coat."

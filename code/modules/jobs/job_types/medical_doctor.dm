@@ -45,7 +45,7 @@
 
 	id_trim = /datum/id_trim/job/medical_doctor
 	uniform = /obj/item/clothing/under/rank/medical/doctor
-	suit = /obj/item/clothing/suit/toggle/labcoat/medical
+	suit = /obj/item/clothing/suit/toggle/labcoat
 	suit_store = /obj/item/flashlight/pen
 	belt = /obj/item/modular_computer/pda/medical
 	ears = /obj/item/radio/headset/headset_med

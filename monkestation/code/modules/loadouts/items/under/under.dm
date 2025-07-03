@@ -691,12 +691,6 @@ GLOBAL_LIST_INIT(loadout_miscunders, generate_loadout_items(/datum/loadout_item/
 	restricted_roles = list(JOB_MEDICAL_DOCTOR, JOB_PARAMEDIC, JOB_CHEMIST, JOB_VIROLOGIST, JOB_CHIEF_MEDICAL_OFFICER)
 	requires_purchase = FALSE
 
-/datum/loadout_item/under/jumpsuit/hlscientist
-	name = "Ridiculous Scientist Outfit"
-	item_path = /obj/item/clothing/under/rank/rnd/scientist/hlscience
-	restricted_roles = list(JOB_SCIENTIST)
-	requires_purchase = FALSE
-
 /datum/loadout_item/under/jumpsuit/utility	//BUYABLE
 	name = "Utility Uniform"
 	item_path = /obj/item/clothing/under/misc/nova/utility
@@ -705,18 +699,6 @@ GLOBAL_LIST_INIT(loadout_miscunders, generate_loadout_items(/datum/loadout_item/
 	name = "Engineering Utility Uniform"
 	item_path = /obj/item/clothing/under/rank/engineering/engineer/nova/utility
 	restricted_roles = list(JOB_STATION_ENGINEER, JOB_ATMOSPHERIC_TECHNICIAN, JOB_CHIEF_ENGINEER)
-	requires_purchase = FALSE
-
-/datum/loadout_item/under/jumpsuit/utility_med
-	name = "Medical Utility Uniform"
-	item_path = /obj/item/clothing/under/rank/medical/doctor/utility
-	restricted_roles = list(JOB_PARAMEDIC, JOB_MEDICAL_DOCTOR, JOB_CHEMIST, JOB_VIROLOGIST, JOB_GENETICIST ,JOB_CHIEF_MEDICAL_OFFICER)
-	requires_purchase = FALSE
-
-/datum/loadout_item/under/jumpsuit/utility_sci
-	name = "Science Utility Uniform"
-	item_path = /obj/item/clothing/under/rank/rnd/scientist/utility
-	restricted_roles = list(JOB_SCIENTIST, JOB_ROBOTICIST, JOB_GENETICIST, JOB_RESEARCH_DIRECTOR, JOB_XENOBIOLOGIST)
 	requires_purchase = FALSE
 
 /datum/loadout_item/under/jumpsuit/utility_cargo
