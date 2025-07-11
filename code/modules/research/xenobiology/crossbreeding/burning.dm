@@ -1,6 +1,6 @@
 /*
 Burning extracts:
-	Have a unique, primarily offensive effect when
+	Have a unique, primarily offensive effect when soor
 	filled with 10u plasma and activated in-hand.
 */
 /obj/item/slimecross/burning
