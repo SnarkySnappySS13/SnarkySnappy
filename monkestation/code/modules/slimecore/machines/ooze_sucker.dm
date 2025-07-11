@@ -173,15 +173,14 @@ GLOBAL_LIST_EMPTY_TYPED(ooze_suckers, /obj/machinery/plumbing/ooze_sucker)
 	// Determine what tiles should be pumped. We grab from a 3x3 area,
 	// but overall try to pump the same volume regardless of number of affected tiles
 	var/turf/local_turf = get_turf(src)
+	var/list/turf/candidate_turfs = local_turf.get_atmos_adjacent_turfs(alldir = TRUE)
+	candidate_turfs += local_turf
+
 	var/list/turf/affected_turfs = list()
 
-	for(var/turf/candidate in local_turf.get_atmos_adjacent_turfs(alldir = TRUE) + local_turf)
-		// don't bother considering turfs that don't even have slime ooze
-		if(!candidate.liquids?.liquid_group?.total_reagent_volume)
-			continue
-		if(!candidate.liquids.liquid_group.reagents?.has_reagent(/datum/reagent/slime_ooze, check_subtypes = TRUE))
-			continue
-		affected_turfs += candidate
+	for(var/turf/candidate as anything in candidate_turfs)
+		if(isturf(candidate))
+			affected_turfs += candidate
 
 	if(!length(affected_turfs))
 		return
@@ -190,13 +189,8 @@ GLOBAL_LIST_EMPTY_TYPED(ooze_suckers, /obj/machinery/plumbing/ooze_sucker)
 	var/multiplier = 1 / length(affected_turfs)
 
 	// We're good, actually pump.
-	if(processes >= processes_required)
-		processes = 0
-		drained_last_process = FALSE
-		for(var/turf/affected_turf as anything in affected_turfs)
-			pump_turf(affected_turf, seconds_per_tick, multiplier)
-	else
-		processes++
+	for(var/turf/affected_turf as anything in affected_turfs)
+		pump_turf(affected_turf, seconds_per_tick, multiplier)
 	update_power_usage()
 
 /obj/machinery/plumbing/ooze_sucker/proc/update_power_usage()
@@ -210,13 +204,18 @@ GLOBAL_LIST_EMPTY_TYPED(ooze_suckers, /obj/machinery/plumbing/ooze_sucker)
 		update_use_power(IDLE_POWER_USE)
 
 /obj/machinery/plumbing/ooze_sucker/proc/pump_turf(turf/affected_turf, seconds_per_tick, multiplier)
-	var/datum/liquid_group/targeted_group = affected_turf?.liquids?.liquid_group
-	if(QDELETED(targeted_group))
+	if(processes < processes_required)
+		processes++
+		return
+	processes = 0
+	drained_last_process = FALSE
+
+	if(!affected_turf.liquids || !affected_turf.liquids.liquid_group)
 		return
 
-	var/target_value = round(seconds_per_tick * (drain_flat + (targeted_group.total_reagent_volume * drain_percent)) * multiplier, CHEMICAL_VOLUME_ROUNDING)
+	var/target_value = seconds_per_tick * (drain_flat + (affected_turf.liquids.liquid_group.total_reagent_volume * drain_percent)) * multiplier
 	//Free space handling
-	var/free_space = round(reagents.maximum_volume - reagents.total_volume, CHEMICAL_VOLUME_ROUNDING)
+	var/free_space = reagents.maximum_volume - reagents.total_volume
 	if(target_value > free_space && (SUCKER_UPGRADE_DISPOSER in upgrades))
 		if (SUCKER_UPGRADE_BALANCER in upgrades)
 			reagents.remove_reagent(reagents.get_master_reagent_id(), target_value - free_space)
@@ -225,6 +224,7 @@ GLOBAL_LIST_EMPTY_TYPED(ooze_suckers, /obj/machinery/plumbing/ooze_sucker)
 	else if(target_value > free_space)
 		target_value = free_space
 
+	var/datum/liquid_group/targeted_group = affected_turf.liquids.liquid_group
 	if(!targeted_group.reagents_per_turf)
 		return
 	targeted_group.transfer_specific_reagents(reagents, target_value, reagents_to_check = typesof(/datum/reagent/slime_ooze), remover = affected_turf.liquids,  merge = TRUE)
