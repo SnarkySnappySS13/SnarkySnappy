@@ -654,7 +654,6 @@
 		/obj/machinery/vending/imported/yangyu = "Fudobenda",
 		/obj/machinery/vending/mechcomp = "ThinkTronic MechComp Dispenser",
 		/obj/machinery/vending/plushvendor = "Plushie Vendor",
-		/obj/machinery/vending/wardrobe/xeno_wardrobe = "Xeno_Drobe",
 		// monkestation end
 	)
 

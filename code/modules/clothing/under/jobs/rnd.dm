@@ -57,8 +57,7 @@
 	armor_type = /datum/armor/rnd_scientist
 
 /datum/armor/rnd_scientist
-	bomb = 15 // Monkestation Edit: It provided no bomb protection before
-	bio = 15
+	bio = 50
 
 /obj/item/clothing/under/rank/rnd/scientist/skirt
 	name = "scientist's jumpskirt"

@@ -47,7 +47,7 @@
 		/datum/job/janitor,
 		/datum/job/lawyer,
 		/datum/job/mime,
-		// barbers and spooktober
+		// monkestation addition: barbers and spooktober
 		/datum/job/barber,
 		/datum/job/yellowclown,
 		/datum/job/skeleton,
@@ -76,13 +76,11 @@
 		/datum/job/shaft_miner,
 		// Medical
 		/datum/job/paramedic,
-		// Science
-		/datum/job/xenobiologist,
 		// Service
 		/datum/job/cook,
-		// Security
+		// Monkestation addition: Security
 		/datum/job/security_assistant,
-		// Engineering
+		// Monkestation addition: Engineering
 		/datum/job/signal_technician,
 	)
 	alive_bonus = 4
@@ -98,11 +96,11 @@
 		/datum/job/chief_medical_officer,
 		/datum/job/head_of_personnel,
 		/datum/job/research_director,
-		/datum/job/nanotrasen_representative,
 		// Security
 		/datum/job/detective,
 		/datum/job/security_officer,
 		/datum/job/warden,
+		// Monkestation edit: brig docs
 		/datum/job/brig_physician,
 	)
 	alive_bonus = 5
@@ -115,6 +113,7 @@
 	target_jobs = list(
 		/datum/job/captain,
 		/datum/job/head_of_security,
+		// Monkestation edit: Blueshields
 		/datum/job/blueshield,
 	)
 	alive_bonus = 6
