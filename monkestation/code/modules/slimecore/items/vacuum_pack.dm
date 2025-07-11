@@ -71,12 +71,12 @@
 	modified = !modified
 	to_chat(user, span_notice("You turn the safety switch on [src] [modified ? "off" : "on"]."))
 
-/obj/item/vacuum_pack/process(seconds_per_tick)
+/obj/item/vacuum_pack/process(delta_time)
 	if(!(VACUUM_PACK_UPGRADE_HEALING in upgrades))
-		return PROCESS_KILL
+		STOP_PROCESSING(SSobj, src)
 
 	for(var/mob/living/basic/animal in stored)
-		animal.adjustBruteLoss(-5 * seconds_per_tick)
+		animal.adjustBruteLoss(-5 * delta_time)
 
 /obj/item/vacuum_pack/examine(mob/user)
 	. = ..()
@@ -139,7 +139,6 @@
 			playsound(user, 'sound/mecha/mechmove03.ogg', 75, TRUE)
 	else
 		remove_nozzle()
-
 
 /obj/item/vacuum_pack/item_action_slot_check(slot, mob/user)
 	if(slot == user.getBackSlot())

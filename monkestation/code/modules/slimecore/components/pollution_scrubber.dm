@@ -11,15 +11,17 @@
 
 	if(lifetime)
 		QDEL_IN(src, lifetime)
-	START_PROCESSING(SSxenobio, src)
+	START_PROCESSING(SSobj, src)
 
 /datum/component/pollution_scrubber/Destroy(force)
-	STOP_PROCESSING(SSxenobio, src)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /datum/component/pollution_scrubber/process(seconds_per_tick)
-	if(astype(parent, /mob/living)?.stat == DEAD)
-		return
+	if(isliving(parent))
+		var/mob/living/living = parent
+		if(living.stat == DEAD)
+			return
+
 	var/turf/open/turf = get_turf(parent)
-	if(isopenturf(turf))
-		turf.pollution?.scrub_amount(scrubbing_amount * seconds_per_tick)
+	turf.pollution?.scrub_amount(scrubbing_amount)
