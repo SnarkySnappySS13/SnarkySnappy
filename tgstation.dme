@@ -7651,7 +7651,6 @@
 #include "monkestation\code\modules\jobs\job_types\shaft_miner.dm"
 #include "monkestation\code\modules\jobs\job_types\signal_technician.dm"
 #include "monkestation\code\modules\jobs\job_types\virologist.dm"
-#include "monkestation\code\modules\jobs\job_types\xenobiologist.dm"
 #include "monkestation\code\modules\jobs\job_types\holloween_jobs\candysalesman.dm"
 #include "monkestation\code\modules\jobs\job_types\holloween_jobs\dietwizard.dm"
 #include "monkestation\code\modules\jobs\job_types\holloween_jobs\ghost.dm"
