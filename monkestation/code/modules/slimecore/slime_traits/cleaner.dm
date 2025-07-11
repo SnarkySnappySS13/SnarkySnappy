@@ -90,8 +90,7 @@
 		is_type_in_typecache(target, cleanable_decals) \
 		|| is_type_in_typecache(target, cleanable_blood) \
 		|| is_type_in_typecache(target, huntable_pests) \
-		|| is_type_in_typecache(target, huntable_trash) \
-		|| HAS_TRAIT(target, TRAIT_TRASH_ITEM)
+		|| is_type_in_typecache(target, huntable_trash)
 
 	if(target_is_dissolvable)
 		parent.balloon_alert_to_viewers("cleaned")
