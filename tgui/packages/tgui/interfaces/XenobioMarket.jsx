@@ -41,11 +41,9 @@ export const XenobioMarket = (_) => {
             {points}
           </Button>
         </Tabs>
-        <Section fill scrollable>
-          {tabIndex === 1 && <SlimeMarket />}
-          {tabIndex === 2 && <RequestViewer />}
-          {tabIndex === 3 && <StoreViewer />}
-        </Section>
+        <Box>{tabIndex === 1 && <SlimeMarket />}</Box>
+        <Box>{tabIndex === 2 && <RequestViewer />}</Box>
+        <Box>{tabIndex === 3 && <StoreViewer />}</Box>
       </Window.Content>
     </Window>
   );

@@ -37,10 +37,8 @@ export const SlimePenController = (_) => {
             Corral Data
           </Tabs.Tab>
         </Tabs>
-        <Section fill scrollable>
-          {tabIndex === 1 && <SlimeData />}
-          {tabIndex === 2 && <StoreViewer />}
-        </Section>
+        <Box>{tabIndex === 1 && <SlimeData />}</Box>
+        <Box>{tabIndex === 2 && <StoreViewer />}</Box>
       </Window.Content>
     </Window>
   );
