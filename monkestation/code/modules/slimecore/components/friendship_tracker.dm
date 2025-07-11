@@ -135,10 +135,10 @@
 	stored_client = clicker.client
 
 /obj/effect/overlay/happiness_overlay/Destroy(force)
+	. = ..()
 	stored_client?.images -= image
-	image = null
+	QDEL_NULL(image)
 	stored_client = null
-	return ..()
 
 /obj/effect/overlay/happiness_overlay/proc/set_hearts(happiness_percentage)
 	hearts_percentage = happiness_percentage
