@@ -16,7 +16,7 @@
 /datum/component/latch_feeding/Initialize(atom/movable/target, damage_type, damage_amount, hunger_restore, stops_at_crit, datum/callback/callback, checks_loc = TRUE)
 	. = ..()
 	src.target = target
-	if(QDELETED(target))
+	if(!target)
 		return COMPONENT_INCOMPATIBLE
 
 	src.damage_type = damage_type
@@ -24,24 +24,27 @@
 	src.hunger_restore = hunger_restore
 	src.stops_at_crit = stops_at_crit
 	src.check_and_replace = callback
+
 	if(!latch_target(loc_check = checks_loc))
 		return COMPONENT_INCOMPATIBLE
+
+	ADD_TRAIT(parent, TRAIT_FEEDING, LATCH_TRAIT)
+
 	START_PROCESSING(SSobj, src)
 
-/datum/component/latch_feeding/Destroy(force)
-	STOP_PROCESSING(SSobj, src)
+/datum/component/latch_feeding/Destroy(force, silent)
+	REMOVE_TRAIT(parent, TRAIT_FEEDING, LATCH_TRAIT)
+	. = ..()
 	target = null
-	check_and_replace = null
-	return ..()
+	qdel(check_and_replace)
 
 /datum/component/latch_feeding/RegisterWithParent()
-	ADD_TRAIT(parent, TRAIT_FEEDING, REF(src))
 	RegisterSignal(parent, COMSIG_LIVING_SET_BUCKLED, PROC_REF(check_buckled))
 	RegisterSignal(parent, COMSIG_MOB_OVERATE, PROC_REF(stop_feeding))
 
 /datum/component/latch_feeding/UnregisterFromParent()
-	REMOVE_TRAIT(parent, TRAIT_FEEDING, REF(src))
-	UnregisterSignal(parent, list(COMSIG_LIVING_SET_BUCKLED, COMSIG_MOB_OVERATE))
+	UnregisterSignal(parent, COMSIG_LIVING_SET_BUCKLED)
+	UnregisterSignal(parent, COMSIG_MOB_OVERATE)
 
 /datum/component/latch_feeding/proc/latch_target(init = FALSE, loc_check = TRUE)
 	var/mob/basic_mob = parent
@@ -71,7 +74,7 @@
 
 /datum/component/latch_feeding/proc/unlatch_target(living = TRUE, silent = FALSE)
 	var/mob/basic_mob = parent
-	if(QDELETED(target))
+	if(!target)
 		return
 	if(basic_mob.buckled)
 		if(!living)
@@ -89,7 +92,7 @@
 		basic_mob.buckled.unbuckle_mob(basic_mob, force=TRUE)
 
 /datum/component/latch_feeding/proc/check_buckled(mob/living/source, atom/movable/new_buckled)
-	if(QDELETED(new_buckled) && !unlatching)
+	if(!new_buckled && !unlatching)
 		unlatching = TRUE
 		unlatch_target()
 		qdel(src)
@@ -100,7 +103,7 @@
 	qdel(src)
 
 /datum/component/latch_feeding/process(seconds_per_tick)
-	if(QDELETED(target))
+	if(!target)
 		qdel(src)
 		return
 
@@ -115,7 +118,6 @@
 		else
 			living_target.apply_damage(damage_amount, BRUTE, spread_damage = TRUE)
 
-	if(!QDELETED(parent)) // ??? I was getting runtimes for no parent but IDK how
+	if(parent) // ??? I was getting runtimes for no parent but IDK how
 		SEND_SIGNAL(parent, COMSIG_MOB_FEED, target, hunger_restore)
-	if(!QDELETED(target)) // and I've also seen runtimes for this. i'm confused. ~lucy
 		SEND_SIGNAL(target, COMSIG_MOB_FED_ON, parent, hunger_restore)

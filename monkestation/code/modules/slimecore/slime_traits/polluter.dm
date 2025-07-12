@@ -25,4 +25,3 @@
 		return
 
 	victim.adjustBruteLoss(1)
-

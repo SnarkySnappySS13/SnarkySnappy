@@ -6,21 +6,18 @@
 	var/hunger_paused = FALSE
 	var/feed_pause_time
 	var/feed_pause_end
-	var/remove_overfed_timer
 
 /datum/component/generic_mob_hunger/Initialize(max_hunger = 250, hunger_drain = 0.1, feed_pause_time = 1 MINUTE, starting_hunger)
 	. = ..()
 	src.hunger_drain = hunger_drain
 	src.max_hunger = max_hunger
 	src.feed_pause_time = feed_pause_time
-	src.current_hunger = starting_hunger || max_hunger
-	START_PROCESSING(SSobj, src)
+	if(!starting_hunger)
+		src.current_hunger = max_hunger
+	else
+		src.current_hunger = starting_hunger
 
-/datum/component/generic_mob_hunger/Destroy(force)
-	STOP_PROCESSING(SSobj, src)
-	if(remove_overfed_timer)
-		deltimer(remove_overfed_timer)
-	return ..()
+	START_PROCESSING(SSobj, src)
 
 /datum/component/generic_mob_hunger/RegisterWithParent()
 	RegisterSignal(parent, COMSIG_MOB_STOP_HUNGER, PROC_REF(stop_hunger))
@@ -28,20 +25,13 @@
 	RegisterSignal(parent, COMSIG_MOB_FEED, PROC_REF(on_feed))
 	RegisterSignal(parent, COMSIG_MOB_RETURN_HUNGER, PROC_REF(return_hunger))
 	RegisterSignal(parent, COMSIG_MOB_ADJUST_HUNGER, PROC_REF(adjust_hunger))
-	RegisterSignal(parent, COMSIG_ATOM_MOUSE_ENTERED, PROC_REF(view_hunger))
 
 /datum/component/generic_mob_hunger/UnregisterFromParent()
-	if(remove_overfed_timer)
-		deltimer(remove_overfed_timer)
-	REMOVE_TRAIT(parent, TRAIT_OVERFED, REF(src))
-	UnregisterSignal(parent, list(
-		COMSIG_MOB_STOP_HUNGER,
-		COMSIG_MOB_START_HUNGER,
-		COMSIG_MOB_FEED,
-		COMSIG_MOB_RETURN_HUNGER,
-		COMSIG_MOB_ADJUST_HUNGER,
-		COMSIG_ATOM_MOUSE_ENTERED
-	))
+	UnregisterSignal(parent, COMSIG_MOB_STOP_HUNGER)
+	UnregisterSignal(parent, COMSIG_MOB_START_HUNGER)
+	UnregisterSignal(parent, COMSIG_MOB_FEED)
+	UnregisterSignal(parent, COMSIG_MOB_RETURN_HUNGER)
+	UnregisterSignal(parent, COMSIG_MOB_ADJUST_HUNGER)
 
 /datum/component/generic_mob_hunger/proc/stop_hunger()
 	hunger_paused = TRUE
@@ -59,8 +49,8 @@
 	if(current_hunger + feed_amount > max_hunger)
 		var/temp = (current_hunger + feed_amount) / max_hunger
 		SEND_SIGNAL(parent, COMSIG_MOB_OVERATE, temp)
-		ADD_TRAIT(parent, TRAIT_OVERFED, REF(src))
-		remove_overfed_timer = addtimer(TRAIT_CALLBACK_REMOVE(parent, TRAIT_OVERFED, REF(src)), 5 MINUTES, TIMER_UNIQUE | TIMER_OVERRIDE | TIMER_STOPPABLE)
+		ADD_TRAIT(parent, TRAIT_OVERFED, "hunger_trait")
+		addtimer(CALLBACK(src, PROC_REF(remove_hunger_trait), TRAIT_OVERFED), 5 MINUTES, TIMER_UNIQUE|TIMER_OVERRIDE|TIMER_STOPPABLE)
 		current_hunger += feed_amount
 		if(feed_pause_time)
 			feed_pause_end = world.time + feed_pause_time
@@ -100,26 +90,5 @@
 /datum/component/generic_mob_hunger/proc/adjust_hunger(datum/source, amount)
 	current_hunger += amount
 
-/datum/component/generic_mob_hunger/proc/view_hunger(mob/living/source, mob/living/clicker)
-	if(!istype(clicker) || !clicker.client)
-		return
-
-	var/list/offset_to_add = get_icon_dimensions(source.icon)
-	var/y_position = offset_to_add["height"] + 8 // this renders above any health ones
-	var/obj/effect/overlay/happiness_overlay/hunger/hearts = new(null, clicker)
-	hearts.pixel_y = y_position
-	hearts.set_hearts(current_hunger / max_hunger)
-	var/image/new_image = new(source)
-	new_image.appearance = hearts.appearance
-	if(!isturf(source.loc))
-		new_image.loc = source.loc
-		SET_PLANE_EXPLICIT(new_image, new_image.plane, source.loc)
-	else
-		new_image.loc = source
-		SET_PLANE_EXPLICIT(new_image, new_image.plane, source)
-	clicker.client.images += new_image
-	hearts.image = new_image
-
-/obj/effect/overlay/happiness_overlay/hunger
-	full_icon = "full_hunger"
-	empty_icon = "empty_hunger"
+/datum/component/generic_mob_hunger/proc/remove_hunger_trait(trait)
+	REMOVE_TRAIT(parent, trait, "hunger_trait")

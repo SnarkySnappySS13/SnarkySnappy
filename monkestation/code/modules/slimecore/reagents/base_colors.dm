@@ -1,4 +1,3 @@
-
 /datum/reagent/slime_ooze/grey
 	name = "Grey Slime Ooze"
 	color = COLOR_GRAY

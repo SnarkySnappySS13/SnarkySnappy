@@ -10,12 +10,12 @@
 	src.lifetime = lifetime
 
 	if(lifetime)
-		QDEL_IN(src, lifetime)
+		addtimer(CALLBACK(src, PROC_REF(kill_component)), lifetime)
 	START_PROCESSING(SSobj, src)
 
-/datum/component/pollution_scrubber/Destroy(force)
-	STOP_PROCESSING(SSobj, src)
-	return ..()
+
+/datum/component/pollution_scrubber/proc/kill_component()
+	qdel(src)
 
 /datum/component/pollution_scrubber/process(seconds_per_tick)
 	if(isliving(parent))
@@ -24,4 +24,5 @@
 			return
 
 	var/turf/open/turf = get_turf(parent)
-	turf.pollution?.scrub_amount(scrubbing_amount)
+	if(turf.pollution)
+		turf.pollution.scrub_amount(scrubbing_amount)
