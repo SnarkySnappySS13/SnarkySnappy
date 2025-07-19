@@ -218,7 +218,7 @@
 /turf/open/floor/engine,
 /area/centcom/basketball)
 "pu" = (
-/mob/living/basic/slime/random,
+/mob/living/simple_animal/slime/random,
 /turf/open/floor/engine,
 /area/centcom/basketball)
 "qU" = (
@@ -529,6 +529,18 @@
 /obj/structure/window/reinforced/spawner/directional/south,
 /turf/open/floor/iron/white,
 /area/centcom/basketball)
+"Se" = (
+/obj/machinery/computer/camera_advanced/xenobio,
+/turf/open/floor/iron/white,
+/area/centcom/basketball)
+"Tc" = (
+/obj/machinery/monkey_recycler,
+/turf/open/floor/iron/white,
+/area/centcom/basketball)
+"Uq" = (
+/obj/machinery/processor/slime,
+/turf/open/floor/iron/white,
+/area/centcom/basketball)
 "Uv" = (
 /obj/effect/decal/cleanable/xenoblood/xgibs/torso,
 /turf/open/floor/engine,
@@ -808,7 +820,7 @@ Hu
 (9,1,1) = {"
 Hu
 Lu
-JM
+Tc
 ly
 AI
 LS
@@ -889,7 +901,7 @@ Hu
 (12,1,1) = {"
 Hu
 Lu
-JM
+Se
 OB
 Vr
 Vr
@@ -970,7 +982,7 @@ Hu
 (15,1,1) = {"
 Hu
 Lu
-JM
+Uq
 ly
 rU
 LS

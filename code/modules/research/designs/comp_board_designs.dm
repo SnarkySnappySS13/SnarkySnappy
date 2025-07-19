@@ -46,6 +46,16 @@
 	)
 	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE | DEPARTMENT_BITFLAG_ENGINEERING //Monkestation edit: Engi circuit
 
+/datum/design/board/xenobiocamera
+	name = "Xenobiology Console Board"
+	desc = "Allows for the construction of circuit boards used to build xenobiology camera computers."
+	id = "xenobioconsole"
+	build_path = /obj/item/circuitboard/computer/xenobiology
+	category = list(
+		RND_CATEGORY_COMPUTER + RND_SUBCATEGORY_COMPUTER_RESEARCH
+	)
+	departmental_flags = DEPARTMENT_BITFLAG_SCIENCE
+
 /datum/design/board/aiupload
 	name = "AI Upload Board"
 	desc = "Allows for the construction of circuit boards used to build an AI Upload Console."

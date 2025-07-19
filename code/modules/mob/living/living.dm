@@ -1473,7 +1473,7 @@
 				created_robot.clear_zeroth_law(announce = FALSE)
 
 		if(WABBAJACK_SLIME)
-			new_mob = new /mob/living/basic/slime/random(loc)
+			new_mob = new /mob/living/simple_animal/slime/random(loc)
 
 		if(WABBAJACK_XENO)
 			var/picked_xeno_type

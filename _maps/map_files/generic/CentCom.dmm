@@ -18195,7 +18195,7 @@
 /turf/open/floor/iron/white/small,
 /area/centcom/central_command_areas/medical)
 "aWw" = (
-/mob/living/basic/slime,
+/mob/living/simple_animal/slime,
 /turf/open/floor/circuit/red/off,
 /area/centcom/syndicate_mothership/expansion_bioterrorism)
 "aWx" = (
@@ -19517,9 +19517,6 @@
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/adminroom)
 "bbC" = (
-/obj/machinery/corral_corner{
-	mapping_id = "13"
-	},
 /turf/open/floor/circuit/red/off,
 /area/centcom/syndicate_mothership/expansion_bioterrorism)
 "bcU" = (
@@ -19766,12 +19763,6 @@
 /turf/open/floor/mineral/titanium/purple,
 /area/centcom/central_command_areas/adminroom)
 "bsr" = (
-/obj/machinery/corral_corner{
-	mapping_id = "11"
-	},
-/obj/machinery/corral_corner{
-	mapping_id = "13"
-	},
 /turf/open/floor/circuit/red/off,
 /area/centcom/syndicate_mothership/expansion_bioterrorism)
 "btE" = (
@@ -20934,9 +20925,6 @@
 /turf/open/floor/grass,
 /area/centcom/central_command_areas/admin)
 "dpU" = (
-/obj/machinery/corral_corner{
-	mapping_id = "12"
-	},
 /turf/open/floor/circuit/red/off,
 /area/centcom/syndicate_mothership/expansion_bioterrorism)
 "dqh" = (
@@ -21849,10 +21837,6 @@
 /turf/open/floor/iron/white/textured,
 /area/centcom/central_command_areas/admin)
 "fbc" = (
-/obj/machinery/plumbing/ooze_sucker{
-	mapping_id = "12";
-	dir = 1
-	},
 /turf/open/floor/circuit/red/off,
 /area/centcom/syndicate_mothership/expansion_bioterrorism)
 "fbd" = (
@@ -23672,12 +23656,6 @@
 /turf/open/water/arena,
 /area/centcom/central_command_areas/admin)
 "hKH" = (
-/obj/machinery/corral_corner{
-	mapping_id = "12"
-	},
-/obj/machinery/slime_pen_controller{
-	mapping_id = "12"
-	},
 /obj/machinery/duct,
 /turf/open/floor/circuit/red/off,
 /area/centcom/syndicate_mothership/expansion_bioterrorism)
@@ -23847,7 +23825,6 @@
 /turf/open/floor/iron/dark/herringbone,
 /area/centcom/central_command_areas/admin)
 "iam" = (
-/obj/machinery/computer/slime_market,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -24014,7 +23991,6 @@
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/admin)
 "itR" = (
-/obj/machinery/plumbing/ooze_compressor,
 /turf/open/floor/engine,
 /area/centcom/syndicate_mothership/expansion_bioterrorism)
 "iuf" = (
@@ -24097,12 +24073,6 @@
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/ferry)
 "iDN" = (
-/obj/machinery/corral_corner{
-	mapping_id = "13"
-	},
-/obj/machinery/slime_pen_controller{
-	mapping_id = "13"
-	},
 /obj/machinery/duct,
 /turf/open/floor/circuit/red/off,
 /area/centcom/syndicate_mothership/expansion_bioterrorism)
@@ -24937,7 +24907,6 @@
 /turf/open/floor/plating/rust,
 /area/centcom/central_command_areas/adminroom)
 "jUG" = (
-/mob/living/basic/xenofauna/meatbeast,
 /turf/open/floor/material/meat,
 /area/centcom/central_command_areas/admin)
 "jVm" = (
@@ -27552,8 +27521,6 @@
 /area/centcom/central_command_areas/adminroom)
 "oLl" = (
 /obj/structure/table/glass/plasmaglass,
-/obj/item/vacuum_pack,
-/obj/item/disk/vacuum_upgrade/biomass,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -27885,15 +27852,9 @@
 /turf/open/floor/plating/rust,
 /area/centcom/central_command_areas/adminroom)
 "pvq" = (
-/obj/machinery/biomass_recycler,
-/obj/item/stack/biomass,
 /obj/effect/turf_decal/stripes/line{
 	dir = 10
 	},
-/obj/item/stack/biomass,
-/obj/item/stack/biomass,
-/obj/item/stack/biomass,
-/obj/item/stack/biomass,
 /turf/open/floor/mineral/titanium/tiled/yellow,
 /area/centcom/syndicate_mothership/expansion_bioterrorism)
 "pvs" = (
@@ -30934,7 +30895,6 @@
 /turf/open/floor/glass/plasma,
 /area/centcom/central_command_areas/evacuation)
 "uTl" = (
-/obj/machinery/slime_market_pad,
 /obj/effect/turf_decal/stripes/line{
 	dir = 8
 	},
@@ -31400,9 +31360,6 @@
 /turf/open/floor/wood/large,
 /area/centcom/central_command_areas/admin)
 "vIz" = (
-/obj/machinery/plumbing/ooze_sucker{
-	mapping_id = "13"
-	},
 /turf/open/floor/circuit/red/off,
 /area/centcom/syndicate_mothership/expansion_bioterrorism)
 "vJI" = (

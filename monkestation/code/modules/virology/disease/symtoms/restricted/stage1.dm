@@ -84,7 +84,7 @@
 
 /datum/symptom/transformation/slime
 	name = "Advanced Mutation Transformation"
-	new_form = /mob/living/basic/slime
+	new_form = /mob/living/simple_animal/slime
 	desc = "Restructures the subject cells into a slime. Cure: Water"
 
 /datum/symptom/transformation/corgi

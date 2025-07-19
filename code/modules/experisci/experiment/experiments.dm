@@ -218,6 +218,8 @@
 	required_atoms = list(
 		/obj/machinery/autolathe = 1,
 		/obj/machinery/rnd/production/circuit_imprinter/department/science = 1,
+		/obj/machinery/monkey_recycler = 1,
+		/obj/machinery/processor/slime = 1,
 		/obj/machinery/processor = 2,
 		/obj/machinery/reagentgrinder = 2,
 		/obj/machinery/growing/tray = 2,

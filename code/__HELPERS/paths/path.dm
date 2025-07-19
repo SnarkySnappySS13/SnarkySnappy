@@ -350,7 +350,7 @@
 		src.can_ventcrawl = HAS_TRAIT(living_construct, TRAIT_VENTCRAWLER_ALWAYS) || HAS_TRAIT(living_construct, TRAIT_VENTCRAWLER_NUDE)
 		src.mob_size = living_construct.mob_size
 		src.incorporeal_move = living_construct.incorporeal_move
-		if(istype(living_construct, /mob/living/basic/slime) || istype(living_construct, /mob/living/basic/xenofauna))
+		if(istype(living_construct, /mob/living/simple_animal/slime) || istype(living_construct))
 			src.xenofauna_or_slime = TRUE
 
 	if(iscameramob(construct_from))

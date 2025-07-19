@@ -69,7 +69,7 @@
 	var/static/list/can_ride_typecache = typecacheof(list(
 		/mob/living/basic/parrot,
 		/mob/living/carbon/human,
-		/mob/living/basic/slime,
+		/mob/living/simple_animal/slime,
 	))
 	var/lastpuke = 0
 	var/account_id

@@ -18,6 +18,6 @@
 	owner.balloon_alert(owner, "you feel nauseous")
 	owner.vomit(20)
 
-	var/mob/living/basic/slime/friend = new(owner.drop_location())
-	friend.slime_flags |= NOOOZE_SLIME
-	SEND_SIGNAL(friend, COMSIG_FRIENDSHIP_CHANGE, owner, 110)
+	var/mob/living/simple_animal/slime/Slime = new(owner.drop_location())
+	Slime.set_friends(list(owner))
+	Slime.set_leader(owner)

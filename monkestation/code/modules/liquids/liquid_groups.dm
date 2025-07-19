@@ -73,6 +73,12 @@ GLOBAL_VAR_INIT(liquid_debug_colors, FALSE)
 	///are we slippery
 	var/slippery = TRUE
 
+/datum/reagent/proc/add_to_member(obj/effect/abstract/liquid_turf/adder)
+	return
+
+/datum/reagent/proc/remove_from_member(obj/effect/abstract/liquid_turf/remover)
+	return
+
 ///NEW/DESTROY
 /datum/liquid_group/New(height, obj/effect/abstract/liquid_turf/created_liquid)
 	color = "#[random_short_color()]"

@@ -521,7 +521,6 @@
 //MONKESTATION EDIT END
 		/obj/item/slime_extract,
 		/obj/item/swab,
-		/obj/item/stack/biomass // monke: make science bags able to hold biomass cubes
 		))
 
 /obj/item/storage/bag/construction

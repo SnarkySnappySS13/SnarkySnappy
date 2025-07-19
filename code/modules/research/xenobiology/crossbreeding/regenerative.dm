@@ -199,15 +199,15 @@ Regenerative extracts:
 
 /obj/item/slimecross/regenerative/green
 	colour = "green"
-	effect_desc = "Rapidly heals the target and changes the species or color of a slime or jellyperson." // monkestation edit: updates effect_desc to reflect the rework
+	effect_desc = "Fully heals the target and changes the spieces or color of a slime or jellyperson."
 
 /obj/item/slimecross/regenerative/green/core_effect(mob/living/target, mob/user)
 	if(isslime(target))
-		target.visible_message(span_warning("\The [target] suddenly changes color!"))
-		var/mob/living/basic/slime/S = target
-		S.start_mutating(TRUE)
-	else if(isoozeling(target))
-		target.reagents.add_reagent(/datum/reagent/mutationtoxin/jelly, 5)
+		target.visible_message(span_warning("The [target] suddenly changes color!"))
+		var/mob/living/simple_animal/slime/target_slime = target
+		target_slime.random_colour()
+	if(isoozeling(target))
+		target.reagents.add_reagent(/datum/reagent/mutationtoxin/jelly,5)
 
 
 /obj/item/slimecross/regenerative/pink
@@ -244,7 +244,7 @@ Regenerative extracts:
 /obj/item/slimecross/regenerative/black/core_effect_before(mob/living/target, mob/user)
 	var/dummytype = target.type
 	if(ismegafauna(target)) //Prevents megafauna duping in a lame way
-		dummytype = /mob/living/basic/slime
+		dummytype = /mob/living/simple_animal/slime
 		to_chat(user, span_warning("The milky goo flows over [target], falling into a weak puddle."))
 	var/mob/living/dummy = new dummytype(target.loc)
 	to_chat(target, span_notice("The milky goo flows from your skin, forming an imperfect copy of you."))
