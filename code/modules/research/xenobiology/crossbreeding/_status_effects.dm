@@ -437,7 +437,6 @@
 /datum/status_effect/stabilized //The base stabilized extract effect, has no effect of its' own.
 	id = "stabilizedbase"
 	duration = STATUS_EFFECT_PERMANENT
-	processing_speed = STATUS_EFFECT_PRIORITY
 	alert_type = null
 	/// Item which provides this buff
 	var/obj/item/slimecross/stabilized/linked_extract
@@ -473,8 +472,10 @@
 	colour = "grey"
 
 /datum/status_effect/stabilized/grey/tick()
-	for(var/mob/living/basic/slime/new_friend in range(3, get_turf(owner)))
-		SEND_SIGNAL(new_friend, COMSIG_FRIENDSHIP_CHANGE, owner, 2)
+	for(var/mob/living/simple_animal/slime/S in range(1, get_turf(owner)))
+		if(!(owner in S.Friends))
+			to_chat(owner, span_notice("[linked_extract] pulses gently as it communicates with [S]."))
+			S.set_friendship(owner, 1)
 	return ..()
 
 /datum/status_effect/stabilized/orange
@@ -483,6 +484,7 @@
 
 /datum/status_effect/stabilized/orange/tick()
 	owner.update_homeostasis_level(id, owner.standard_body_temperature, 0.5 KELVIN)
+
 
 /datum/status_effect/stabilized/orange/on_remove()
 	. = ..()
@@ -493,27 +495,25 @@
 	colour = "purple"
 	/// Whether we healed from our last tick
 	var/healed_last_tick = FALSE
-	/// How much damage is healed per tick.
-	var/heal_amount = 0.2
 
 /datum/status_effect/stabilized/purple/tick()
 	healed_last_tick = FALSE
 
 	if(owner.getBruteLoss() > 0)
-		owner.adjustBruteLoss(-heal_amount, updating_health = FALSE)
+		owner.adjustBruteLoss(-0.2)
 		healed_last_tick = TRUE
 
 	if(owner.getFireLoss() > 0)
-		owner.adjustFireLoss(-heal_amount, updating_health = FALSE)
+		owner.adjustFireLoss(-0.2)
 		healed_last_tick = TRUE
 
 	if(owner.getToxLoss() > 0)
-		healed_last_tick += owner.adjustToxLoss(-heal_amount, updating_health = FALSE, forced = TRUE) // Forced, so slimepeople are healed as well.
+		// Forced, so slimepeople are healed as well.
+		owner.adjustToxLoss(-0.2, forced = TRUE)
 		healed_last_tick = TRUE
 
 	// Technically, "healed this tick" by now.
 	if(healed_last_tick)
-		owner.updatehealth()
 		new /obj/effect/temp_visual/heal(get_turf(owner), "#FF0000")
 
 	return ..()
@@ -521,6 +521,8 @@
 /datum/status_effect/stabilized/purple/get_examine_text()
 	if(healed_last_tick)
 		return span_warning("[owner.p_they(TRUE)] [owner.p_are()] regenerating slowly, purplish goo filling in small injuries!")
+
+	return null
 
 /datum/status_effect/stabilized/blue
 	id = "stabilizedblue"
@@ -617,43 +619,33 @@
 /datum/status_effect/stabilized/darkblue
 	id = "stabilizeddarkblue"
 	colour = "dark blue"
-	/// Typecache of items to ignore extingushing.
-	var/static/list/ignore_typecache
-
-/datum/status_effect/stabilized/darkblue/New(list/arguments)
-	if(isnull(ignore_typecache))
-		ignore_typecache = typecacheof(list(
-			/obj/item/lighter,
-			/obj/item/clothing/mask/cigarette,
-		))
-	return ..()
 
 /datum/status_effect/stabilized/darkblue/tick()
 	if(owner.fire_stacks > 0 && prob(80))
 		owner.adjust_wet_stacks(1)
 		if(owner.fire_stacks <= 0)
 			to_chat(owner, span_notice("[linked_extract] coats you in a watery goo, extinguishing the flames."))
-	var/obj/held_item = owner.get_active_held_item()
-	if(QDELETED(held_item) || is_type_in_typecache(held_item, ignore_typecache))
-		return
-	held_item.extinguish() //All shamelessly copied from water's expose_obj, since I didn't seem to be able to get it here for some reason.
-	held_item.wash(CLEAN_TYPE_ACID)
+	var/obj/O = owner.get_active_held_item()
+	if(O)
+		O.extinguish() //All shamelessly copied from water's expose_obj, since I didn't seem to be able to get it here for some reason.
+		O.wash(CLEAN_TYPE_ACID)
 	// Monkey cube
-	if(istype(held_item, /obj/item/food/monkeycube))
-		var/obj/item/food/monkeycube/cube = held_item
-		to_chat(owner, span_warning("[linked_extract] kept your hands wet, making [held_item] expand!"))
+	if(istype(O, /obj/item/food/monkeycube))
+		to_chat(owner, span_warning("[linked_extract] kept your hands wet! It makes [O] expand!"))
+		var/obj/item/food/monkeycube/cube = O
 		cube.Expand()
+
 	// Dehydrated carp
-	else if(istype(held_item, /obj/item/toy/plush/carpplushie/dehy_carp))
-		var/obj/item/toy/plush/carpplushie/dehy_carp/carp_friend = held_item
-		to_chat(owner, span_warning("[linked_extract] kept your hands wet, making [carp_friend] expand!"))
-		carp_friend.Swell() // Makes a carp
-	else if(istype(held_item, /obj/item/stack/sheet/hairlesshide))
-		var/obj/item/stack/sheet/hairlesshide/hide = held_item
-		to_chat(owner, span_warning("[linked_extract] kept your hands wet, hydrating [hide]!"))
-		new /obj/item/stack/sheet/wethide(hide.drop_location(), hide.amount)
-		qdel(hide)
-		owner.put_in_active_hand(hide)
+	else if(istype(O, /obj/item/toy/plush/carpplushie/dehy_carp))
+		to_chat(owner, span_warning("[linked_extract] kept your hands wet! It makes [O] expand!"))
+		var/obj/item/toy/plush/carpplushie/dehy_carp/dehy = O
+		dehy.Swell() // Makes a carp
+
+	else if(istype(O, /obj/item/stack/sheet/hairlesshide))
+		to_chat(owner, span_warning("[linked_extract] kept your hands wet! It wets [O]!"))
+		var/obj/item/stack/sheet/hairlesshide/HH = O
+		new /obj/item/stack/sheet/wethide(get_turf(HH), HH.amount)
+		qdel(HH)
 	..()
 
 /datum/status_effect/stabilized/silver
@@ -1085,59 +1077,20 @@
 		var/mob/living/carbon/human/H = owner
 		H.physiology.damage_resistance -= 5
 
-/// Cooldown ID for stable rainbow activations.
-#define COOLDOWN_STABLE_RAINBOW "stable_rainbow_cooldown"
-
 /datum/status_effect/stabilized/rainbow
 	id = "stabilizedrainbow"
 	colour = "rainbow"
-	var/trigger_after_cooldown = FALSE
 
-/datum/status_effect/stabilized/rainbow/on_apply()
-	RegisterSignal(owner, SIGNAL_ADDTRAIT(TRAIT_CRITICAL_CONDITION), PROC_REF(on_enter_critical))
-	RegisterSignal(owner, COMSIG_LIVING_HEALTH_UPDATE, PROC_REF(on_health_update))
-	return TRUE
-
-/datum/status_effect/stabilized/rainbow/on_remove()
-	UnregisterSignal(owner, list(SIGNAL_ADDTRAIT(TRAIT_CRITICAL_CONDITION), COMSIG_LIVING_HEALTH_UPDATE))
-
+/* monkestation edit: replaced in [monkestation\code\modules\slimecore\crossbreeding\stabilized.dm]
 /datum/status_effect/stabilized/rainbow/tick()
-	. = ..()
-	// if we entered crit during cooldown, we'll keep trying to activate so that it'll take effect the moment the cooldown expires
-	if(trigger_after_cooldown)
-		if(owner.health <= owner.crit_threshold)
-			activate()
-		else
-			trigger_after_cooldown = FALSE
-
-/datum/status_effect/stabilized/rainbow/proc/on_enter_critical(datum/source)
-	SIGNAL_HANDLER
-	activate()
-
-/datum/status_effect/stabilized/rainbow/proc/on_health_update(datum/source)
-	SIGNAL_HANDLER
-	if(owner.health <= owner.hardcrit_threshold)
-		activate()
-
-/datum/status_effect/stabilized/rainbow/proc/activate()
-	var/obj/item/slimecross/stabilized/rainbow/extract = linked_extract
-	if(QDELETED(src) || !istype(extract) || QDELING(extract) || QDELETED(extract.regencore))
-		return
-	if(TIMER_COOLDOWN_CHECK(owner, COOLDOWN_STABLE_RAINBOW))
-		trigger_after_cooldown = TRUE
-		return
-	trigger_after_cooldown = FALSE
-	// bypasses cooldowns, but also removes any existing regen effects
-	owner.remove_status_effect(/datum/status_effect/regenerative_extract)
-	owner.remove_status_effect(/datum/status_effect/slime_regen_cooldown)
-	owner.visible_message(span_hypnophrase("[owner] flashes a rainbow of colors, and [owner.p_their()] skin is coated in a milky regenerative goo!"))
-	playsound(owner, 'sound/effects/splat.ogg', vol = 40, vary = TRUE)
-	extract.regencore.core_effect_before(owner, owner)
-	extract.regencore.apply_effect(owner)
-	extract.regencore.core_effect(owner, owner)
-	QDEL_NULL(extract.regencore)
-	QDEL_NULL(linked_extract)
-	TIMER_COOLDOWN_START(owner, COOLDOWN_STABLE_RAINBOW, 1.5 MINUTES)
-	qdel(src)
-
-#undef COOLDOWN_STABLE_RAINBOW
+	if(owner.health <= 0)
+		var/obj/item/slimecross/stabilized/rainbow/X = linked_extract
+		if(istype(X))
+			if(X.regencore)
+				X.regencore.afterattack(owner,owner,TRUE)
+				X.regencore = null
+				owner.visible_message(span_warning("[owner] flashes a rainbow of colors, and [owner.p_their()] skin is coated in a milky regenerative goo!"))
+				qdel(src)
+				qdel(linked_extract)
+	return ..()
+*/

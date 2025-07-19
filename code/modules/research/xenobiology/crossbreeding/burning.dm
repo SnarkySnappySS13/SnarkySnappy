@@ -1,6 +1,6 @@
 /*
 Burning extracts:
-	Have a unique, primarily offensive effect when
+	Have a unique, primarily offensive effect when soor
 	filled with 10u plasma and activated in-hand.
 */
 /obj/item/slimecross/burning
@@ -32,10 +32,11 @@ Burning extracts:
 	effect_desc = "Creates a hungry and speedy slime that will love you forever."
 
 /obj/item/slimecross/burning/grey/do_effect(mob/user)
-	var/mob/living/basic/slime/S = new(get_turf(user))
+	var/mob/living/simple_animal/slime/S = new(get_turf(user),"grey")
 	S.visible_message(span_danger("A baby slime emerges from [src], and it nuzzles [user] before burbling hungrily!"))
-	SEND_SIGNAL(S, COMSIG_FRIENDSHIP_CHANGE, user, 110)
+	S.set_friendship(user, 20) //Gas, gas, gas
 	S.bodytemperature = T0C + 400 //We gonna step on the gas.
+	S.set_nutrition(S.get_hunger_nutrition()) //Tonight, we fight!
 	..()
 
 /obj/item/slimecross/burning/orange
@@ -204,16 +205,14 @@ Burning extracts:
 
 /obj/item/slimecross/burning/red/do_effect(mob/user)
 	user.visible_message(span_danger("[src] pulses a hazy red aura for a moment, which wraps around [user]!"))
-	for(var/mob/living/basic/slime/S in view(7, get_turf(user)))
-		/*
+	for(var/mob/living/simple_animal/slime/S in view(7, get_turf(user)))
 		if(user in S.Friends)
 			var/friendliness = S.Friends[user]
 			S.clear_friends()
 			S.set_friendship(user, friendliness)
 		else
 			S.clear_friends()
-		*/
-		ADD_TRAIT(S, TRAIT_SLIME_RABID, "burning-red")
+		S.rabid = 1
 		S.visible_message(span_danger("The [S] is driven into a dangerous frenzy!"))
 	..()
 
