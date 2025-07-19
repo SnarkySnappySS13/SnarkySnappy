@@ -165,14 +165,6 @@
 	if(stat)
 		Feedstop(silent = TRUE)
 
-	// monke start: make slimes feed faster on mindless mobs and monkeys
-	var/feed_multiplier = 1
-	if(QDELETED(prey.mind) && !istype(prey, /mob/living/simple_animal/pet) && !istype(prey, /mob/living/basic/pet)) // pets have an honorary soul in my book
-		feed_multiplier += 1
-	if(ismonkey(prey))
-		feed_multiplier += 0.5
-	// monke end
-
 	if(prey.stat == DEAD) // our victim died
 		if(!client)
 			if(!rabid && !attacked)
@@ -191,8 +183,8 @@
 		return
 
 	if(iscarbon(prey))
-		prey.adjustCloneLoss(rand(2, 4) * 0.5 * seconds_per_tick * feed_multiplier) // monke edit: make slimes feed faster on mindless mobs and monkeys
-		prey.adjustToxLoss(rand(1, 2) * 0.5 * seconds_per_tick * feed_multiplier) // monke edit: make slimes feed faster on mindless mobs and monkeys
+		prey.adjustCloneLoss(rand(2, 4) * 0.5 * seconds_per_tick)
+		prey.adjustToxLoss(rand(1, 2) * 0.5 * seconds_per_tick)
 
 		if(SPT_PROB(5, seconds_per_tick) && prey.client)
 			to_chat(prey, "<span class='userdanger'>[pick("You can feel your body becoming weak!", \
@@ -207,8 +199,8 @@
 		var/mob/living/animal_victim = prey
 
 		var/totaldamage = 0 //total damage done to this unfortunate animal
-		totaldamage += animal_victim.adjustCloneLoss(rand(2, 4) * 0.5 * seconds_per_tick * feed_multiplier) // monke edit: make slimes feed faster on mindless mobs and monkeys
-		totaldamage += animal_victim.adjustToxLoss(rand(1, 2) * 0.5 * seconds_per_tick * feed_multiplier) // monke edit: make slimes feed faster on mindless mobs and monkeys
+		totaldamage += animal_victim.adjustCloneLoss(rand(2, 4) * 0.5 * seconds_per_tick)
+		totaldamage += animal_victim.adjustToxLoss(rand(1, 2) * 0.5 * seconds_per_tick)
 
 		if(totaldamage <= 0) //if we did no(or negative!) damage to it, stop
 			Feedstop(0, 0)
@@ -218,10 +210,10 @@
 		Feedstop(0, 0)
 		return
 
-	add_nutrition((rand(7, 15) * 0.5 * seconds_per_tick * CONFIG_GET(number/damage_multiplier)) * feed_multiplier) // monke edit: make slimes feed faster on mindless mobs and monkeys
+	add_nutrition((rand(7, 15) * 0.5 * seconds_per_tick * CONFIG_GET(number/damage_multiplier)))
 
 	//Heal yourself.
-	adjustBruteLoss(-1.5 * seconds_per_tick * feed_multiplier) // monke edit: make slimes feed faster on mindless mobs and monkeys
+	adjustBruteLoss(-1.5 * seconds_per_tick)
 
 /mob/living/simple_animal/slime/proc/handle_nutrition(seconds_per_tick, times_fired)
 
