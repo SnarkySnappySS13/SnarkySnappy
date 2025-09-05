@@ -340,4 +340,15 @@
 	var/static/list/rat_cache = typecacheof(/obj/item/food/deadmouse)
 	disease_free_foods = rat_cache
 
+/obj/item/organ/internal/stomach/frog
+	name = "frogperson stomach"
+	desc = "A stomach of a frog. Important for biology classes."
+	color = COLOR_VERY_DARK_LIME_GREEN
+
+/obj/item/organ/internal/stomach/frog/Initialize(mapload)
+	. = ..()
+	// RETURN TO LATER: once gigaflies and what not are added we can make frogs eat them
+	// var/static/list/rat_cache = typecacheof(/obj/item/food/deadmouse)
+	// disease_free_foods = rat_cache
+
 #undef STOMACH_METABOLISM_CONSTANT

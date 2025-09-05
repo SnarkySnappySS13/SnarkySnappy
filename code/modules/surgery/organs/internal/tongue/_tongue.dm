@@ -189,6 +189,21 @@
 /obj/item/organ/internal/tongue/get_availability(datum/species/owner_species, mob/living/owner_mob)
 	return owner_species.mutanttongue
 
+/obj/item/organ/internal/tongue/frog // TODO: figure out how to make it GEG or REE instead of laugh or scream, it's either here or in emote code
+	name = "long tongue"
+	desc = "A sticky and long muscle typically found in frogs."
+	icon_state = "tonguefrog"
+	say_mod = "ribbits"
+	modifies_speech = FALSE
+	languages_native = list(/datum/language/chanspeak)
+	liked_foodtypes = GORE | MEAT | SEAFOOD | NUTS | BUGS | GROSS
+	disliked_foodtypes = GRAIN | DAIRY | CLOTH
+
+/obj/item/organ/internal/tongue/frog/on_life(seconds_per_tick, times_fired)
+	. = ..()
+	if(prob(1))
+		owner.emote("ribbit")
+
 /obj/item/organ/internal/tongue/lizard
 	name = "forked tongue"
 	desc = "A thin and long muscle typically found in reptilian races, apparently moonlights as a nose."

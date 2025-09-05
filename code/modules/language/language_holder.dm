@@ -267,6 +267,12 @@ Key procs
 /datum/language_holder/drone/syndicate
 	blocked_languages = list()
 
+/datum/language_holder/frog
+	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
+								/datum/language/chanspeak = list(LANGUAGE_ATOM))
+	spoken_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
+							/datum/language/chanspeak = list(LANGUAGE_ATOM))
+
 /datum/language_holder/jelly
 	understood_languages = list(/datum/language/common = list(LANGUAGE_ATOM),
 								/datum/language/slime = list(LANGUAGE_ATOM))

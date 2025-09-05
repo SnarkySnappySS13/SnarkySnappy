@@ -912,6 +912,9 @@
 /mob/living/carbon/human/species/fly
 	race = /datum/species/fly
 
+/mob/living/carbon/human/species/frog
+	race = /datum/species/frog
+
 /mob/living/carbon/human/species/golem
 	race = /datum/species/golem
 

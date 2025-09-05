@@ -22,6 +22,15 @@ GLOBAL_LIST_INIT(human_recipes, list( \
 	. = ..()
 	. += GLOB.human_recipes
 
+/obj/item/stack/sheet/animalhide/frog
+	name = "frog skin"
+	desc = "Those eyes, it still looks alive."
+	singular_name = "frog skin piece"
+	icon_state = "sheet-frog"
+	inhand_icon_state = null
+	merge_type = /obj/item/stack/sheet/animalhide/frog
+
+
 /obj/item/stack/sheet/animalhide/generic
 	name = "skin"
 	desc = "A piece of skin."

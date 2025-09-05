@@ -212,6 +212,16 @@
 		if(!findname(.))
 			break
 
+/proc/random_unique_frog_name(gender, attempts_to_find_unique_name=10)
+	for(var/i in 1 to attempts_to_find_unique_name)
+		if(gender == MALE)
+			. = capitalize(GLOB.first_names_male) + " Pepe"
+		else
+			. = capitalize(GLOB.first_names_female) + " Pepe"
+
+		if(!findname(.))
+			break
+
 /proc/random_unique_lizard_name(gender, attempts_to_find_unique_name=10)
 	for(var/i in 1 to attempts_to_find_unique_name)
 		. = capitalize(lizard_name(gender))

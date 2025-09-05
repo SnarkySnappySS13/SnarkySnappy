@@ -105,6 +105,16 @@
 /obj/item/food/meat/slab/human/mutant/lizard/make_grillable()
 	AddComponent(/datum/component/grillable, /obj/item/food/meat/steak/plain/human/lizard, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE, /datum/pollutant/food/fried_meat)
 
+/obj/item/food/meat/slab/human/mutant/frog
+	icon_state = "frogmeat"
+	desc = "Staple of space-asian culture."
+	tastes = list("meat" = 4, "chinese cuisine" = 1)
+	foodtypes = MEAT | RAW | GORE
+	venue_value = FOOD_MEAT_MUTANT
+
+/obj/item/food/meat/slab/human/mutant/frog/make_grillable()
+	AddComponent(/datum/component/grillable, /obj/item/food/meat/steak/plain/human/frog, rand(30 SECONDS, 90 SECONDS), TRUE, TRUE, /datum/pollutant/food/fried_meat)
+
 /obj/item/food/meat/slab/human/mutant/plant
 	icon_state = "plantmeat"
 	desc = "All the joys of healthy eating with all the fun of cannibalism."
@@ -555,6 +565,13 @@
 	name = "lizard steak"
 	icon_state = "birdsteak"
 	tastes = list("juicy chicken" = 3, "scales" = 1)
+	foodtypes = MEAT | GORE
+
+/obj/item/food/meat/steak/plain/human/frog
+	name = "frog steak"
+	desc = "Staple of space-french culture."
+	icon_state = "frogsteak"
+	tastes = list("juicy chicken" = 3, "french cuisine" = 1)
 	foodtypes = MEAT | GORE
 
 /obj/item/food/meat/steak/meatproduct
