@@ -574,6 +574,13 @@
 	if(!QDELETED(src))
 		qdel(src)
 
+/obj/item/organ/internal/heart/frog
+	name = "frog heart"
+	desc = "Important for biology classes."
+	color = COLOR_VERY_DARK_LIME_GREEN
+	maxHealth = 1.5 * STANDARD_ORGAN_THRESHOLD // SNOPES: frogs have 3 chambered hearts
+	heart_bloodtype = /datum/blood_type/crew/lizard
+
 /obj/item/organ/internal/heart/lizard
 	name = "lizard heart"
 	heart_bloodtype = /datum/blood_type/crew/lizard
