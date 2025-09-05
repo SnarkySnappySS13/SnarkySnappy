@@ -38,18 +38,12 @@ $validation = "org";
 $validation_count = 1;
 $tracked_branch = 'master';
 $require_changelogs = false;
-$discordWebHooks = array();
 
 // Only these repositories will announce in game.
 // Any repository that players actually care about.
 $game_announce_whitelist = array(
 	"tgstation",
 	"TerraGov-Marine-Corps",
-);
-
-// Any repository that matches in this blacklist will not appear on Discord.
-$discord_announce_blacklist = array(
-	"/^event-.*$/",
 );
 
 require_once 'secret.php';
@@ -158,10 +152,6 @@ function apisend($url, $method = 'GET', $content = null, $authorization = null) 
 function github_apisend($url, $method = 'GET', $content = NULL) {
 	global $apiKey;
 	return apisend($url, $method, $content, 'token ' . $apiKey);
-}
-
-function discord_webhook_send($webhook, $content) {
-	return apisend($webhook, 'POST', $content);
 }
 
 function validate_user($payload) {
@@ -336,7 +326,6 @@ function is_blacklisted($blacklist, $name) {
 }
 
 function handle_pr($payload) {
-	global $discord_announce_blacklist;
 	global $no_changelog;
 	global $game_announce_whitelist;
 
@@ -385,10 +374,6 @@ function handle_pr($payload) {
 
 	if (in_array($repo_name, $game_announce_whitelist)) {
 		game_announce($action, $payload, $pr_flags);
-	}
-
-	if (!is_blacklisted($discord_announce_blacklist, $repo_name)) {
-		discord_announce($action, $payload, $pr_flags);
 	}
 }
 
@@ -482,78 +467,6 @@ function game_announce($action, $payload, $pr_flags) {
 		game_server_send($server['address'], $server['port'], $server_message);
 	}
 
-}
-
-function discord_announce($action, $payload, $pr_flags) {
-	global $discordWebHooks;
-	$color;
-	switch ($action) {
-		case 'reopened':
-		case 'opened':
-			$color = 0x2cbe4e;
-			break;
-		case 'closed':
-			$color = 0xcb2431;
-			break;
-		case 'merged':
-			$color = 0x6f42c1;
-			break;
-		default:
-			return;
-	}
-	$data = array(
-		'username' => 'GitHub',
-		'avatar_url' => $payload['pull_request']['base']['user']['avatar_url'],
-	);
-
-	$content = 'Pull Request #'.$payload['pull_request']['number'].' *'.$action.'* by '.discord_sanitize($payload['sender']['login'])."\n".discord_sanitize($payload['pull_request']['user']['login']).' - __**'.discord_sanitize($payload['pull_request']['title']).'**__'."\n".'<'.$payload['pull_request']['html_url'].'>';
-
-	$embeds = array(
-			array(
-				'title' => '__**'.discord_sanitize($payload['pull_request']['title'], S_MARKDOWN).'**__',
-				'description' => discord_sanitize(str_replace(array("\r\n", "\n"), array(' ', ' '), substr($payload['pull_request']['body'], 0, 320)), S_HTML_COMMENTS),
-				'url' => $payload['pull_request']['html_url'],
-				'color' => $color,
-				'author' => array(
-					'name' => discord_sanitize($payload['pull_request']['user']['login'], S_MARKDOWN),
-					'url' => $payload['pull_request']['user']['html_url'],
-					'icon_url' => $payload['pull_request']['user']['avatar_url']
-				),
-				'footer' => array(
-					'text' => '#'.$payload['pull_request']['number'].' '.discord_sanitize($payload['pull_request']['base']['repo']['full_name'], S_MARKDOWN).' '.discord_sanitize($payload['pull_request']['head']['ref'], S_MARKDOWN).' -> '.discord_sanitize($payload['pull_request']['base']['ref'], S_MARKDOWN),
-					'icon_url' => $payload['pull_request']['base']['user']['avatar_url']
-				)
-			)
-	);
-	$discordWebHook_targets = filter_announce_targets($discordWebHooks, $payload['pull_request']['base']['repo']['owner']['login'], $payload['pull_request']['base']['repo']['name'], $action, $pr_flags);
-	foreach ($discordWebHook_targets as $discordWebHook) {
-		$sending_data = $data;
-		if (isset($discordWebHook['embed']) && $discordWebHook['embed']) {
-			$sending_data['embeds'] = $embeds;
-			if (!isset($discordWebHook['no_text']) || !$discordWebHook['no_text'])
-				$sending_data['content'] = $content;
-		} else {
-			$sending_data['content'] = $content;
-		}
-		discord_webhook_send($discordWebHook['url'], $sending_data);
-	}
-
-}
-
-function discord_sanitize($text, $flags = S_MENTIONS|S_LINK_EMBED|S_MARKDOWN) {
-	if ($flags & S_MARKDOWN)
-		$text = str_ireplace(array('\\', '*', '_', '~', '`', '|'), (array('\\\\', '\\*', '\\_', '\\~', '\\`', '\\|')), $text);
-
-	if ($flags & S_HTML_COMMENTS)
-		$text = preg_replace('/<!--(.*)-->/Uis', '', $text);
-
-	if ($flags & S_MENTIONS)
-		$text = str_ireplace(array('@everyone', '@here', '<@'), array('`@everyone`', '`@here`', '@<'), $text);
-
-	if ($flags & S_LINK_EMBED)
-		$text = preg_replace("/((https?|ftp|byond)\:\/\/)([a-z0-9-.]*)\.([a-z]{2,3})(\:[0-9]{2,5})?(\/(?:[a-z0-9+\$_-]\.?)+)*\/?(\?[a-z+&\$_.-][a-z0-9;:@&%=+\/\$_.-]*)?(#[a-z_.-][a-z0-9+\$_.-]*)?/mi", '<$0>', $text);
-
-	return $text;
 }
 
 //creates a comment on the payload issue
