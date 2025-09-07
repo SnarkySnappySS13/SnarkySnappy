@@ -1218,3 +1218,43 @@
 	var/obj/item/organ/internal/stomach/ethereal/stomach = exposed_carbon.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(istype(stomach))
 		stomach.adjust_charge(reac_volume * 3)
+
+/datum/reagent/consumable/soylent
+	name = "Soylent"
+	description = "Thick nutritious shake"
+	color = "#DFDFDF"
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	taste_description = "cereal milk"
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+/datum/reagent/consumable/soylent_cacao
+	name = "Soylent cacao"
+	description = "Thick nutritious shake"
+	color = "#C79C8A"
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	taste_description = "milky cacao"
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+/datum/reagent/consumable/soylent_banana
+	name = "Soylent banana"
+	description = "Thick nutritious shake"
+	color = "#DDBC6D"
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	taste_description = "milky banana"
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+/datum/reagent/consumable/soylent_strawberry
+	name = "Soylent strawberry"
+	description = "Thick nutritious shake"
+	color = "#D74750"
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	taste_description = "milky strawberry"
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
+
+/datum/reagent/consumable/soylent_mint
+	name = "Soylent mint"
+	description = "Thick nutritious shake"
+	color = "#9DC3A5"
+	nutriment_factor = 5 * REAGENTS_METABOLISM
+	taste_description = "mint"
+	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
