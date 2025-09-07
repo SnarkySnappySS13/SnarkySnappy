@@ -306,8 +306,7 @@
 		desc = pick(descs)
 	if(prob(10))
 		icon = 'monkestation/icons/obj/pills.dmi'
-		icon_state = "mdma_wario"
-		transform.Scale(0.5 ,0.5)
+		icon_state = "mdma_warrior-z"
 	else
 		icon_state = "pill[rand(1,21)]"
 
