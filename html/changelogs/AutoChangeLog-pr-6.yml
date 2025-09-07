@@ -1,0 +1,6 @@
+author: "Qoot-jpg"
+delete-after: True
+changes:
+  - rscadd: "Added 5 new drinks to drink_reagents.dm"
+  - rscadd: "Added 5 new bottle icons to the bottles.dmi"
+  - rscadd: "Added the new drinks as purchasable items in offee vending machine and boozeomat"
