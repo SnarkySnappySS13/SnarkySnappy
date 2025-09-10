@@ -198,7 +198,7 @@
 
 /obj/item/reagent_containers/cup/glass/dry_ramen
 	name = "cup ramen"
-	desc = "Just add 5ml of water, self heats! A taste that reminds you of your school years. Now new with salty flavour!"
+	desc = "Just add 5ml of water, self heats! A taste that reminds you of your school years. Now new with salty flavor!"
 	icon_state = "ramen"
 	list_reagents = list(/datum/reagent/consumable/dry_ramen = 15, /datum/reagent/consumable/salt = 3)
 	drink_type = GRAIN
@@ -558,3 +558,38 @@
 	base_icon_state = "britcup"
 	volume = 30
 	spillable = TRUE
+
+/obj/item/reagent_containers/cup/glass/bottle/soylent // I don't know how recipes work but this would be the feedstock <- Sneed's Feedstock and Seedstock
+	name = "Soylent"
+	desc = "Science-backed, sustainable, nutrition accessible, and affordable to all."
+	icon = 'icons/obj/drinks/bottles.dmi'
+	icon_state = "soylent_bottle"
+	list_reagents = list(/datum/reagent/consumable/soylent = 30)
+
+/obj/item/reagent_containers/cup/glass/bottle/soylent_cacao
+	name = "Soylent cacao"
+	desc = "Science-backed, sustainable, nutrition accessible, and affordable to all. This bottle is cacao-flavored."
+	icon = 'icons/obj/drinks/bottles.dmi'
+	icon_state = "soylent_cacao_bottle"
+	list_reagents = list(/datum/reagent/consumable/soylent_cacao = 30)
+
+/obj/item/reagent_containers/cup/glass/bottle/soylent_banana
+	name = "Soylent banana"
+	desc = "Science-backed, sustainable, nutrition accessible, and affordable to all. This bottle is banana-flavored."
+	icon = 'icons/obj/drinks/bottles.dmi'
+	icon_state = "soylent_banana_bottle"
+	list_reagents = list(/datum/reagent/consumable/soylent_banana = 30)
+
+/obj/item/reagent_containers/cup/glass/bottle/soylent_strawberry
+	name = "Soylent strawberry"
+	desc = "Science-backed, sustainable, nutrition accessible, and affordable to all. This bottle is strawberry-flavored."
+	icon = 'icons/obj/drinks/bottles.dmi'
+	icon_state = "soylent_strawberry_bottle"
+	list_reagents = list(/datum/reagent/consumable/soylent_strawberry = 30)
+
+/obj/item/reagent_containers/cup/glass/bottle/soylent_mint
+	name = "Soylent mint"
+	desc = "Science-backed, sustainable, nutrition accessible, and affordable to all. This bottle is mint-flavored."
+	icon = 'icons/obj/drinks/bottles.dmi'
+	icon_state = "soylent_mint_bottle"
+	list_reagents = list(/datum/reagent/consumable/soylent_mint = 30)

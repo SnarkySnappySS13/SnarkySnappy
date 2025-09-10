@@ -938,35 +938,4 @@
 	list_reagents = list(/datum/reagent/consumable/menthol = 100)
 	age_restricted = TRUE
 
-/obj/item/reagent_containers/cup/glass/bottle/soylent // I don't know how recipes work but this would be the feedstock
-	name = "Soylent"
-	desc = "science-backed, sustainable, nutrition accessible, and affordable to all."
-	icon_state = "soylent_bottle"
-	list_reagents = list(/datum/reagent/consumable/soylent = 30)
-
-/obj/item/reagent_containers/cup/glass/bottle/soylent_cacao
-	name = "Soylent cacao"
-	desc = "science-backed, sustainable, nutrition accessible, and affordable to all."
-	icon_state = "soylent_cacao_bottle"
-	list_reagents = list(/datum/reagent/consumable/soylent_cacao = 30)
-
-/obj/item/reagent_containers/cup/glass/bottle/soylent_banana
-	name = "Soylent banana"
-	desc = "science-backed, sustainable, nutrition accessible, and affordable to all."
-	icon_state = "soylent_banana_bottle"
-	list_reagents = list(/datum/reagent/consumable/soylent_banana = 30)
-
-/obj/item/reagent_containers/cup/glass/bottle/soylent_strawberry
-	name = "Soylent strawberry"
-	desc = "science-backed, sustainable, nutrition accessible, and affordable to all."
-	icon_state = "soylent_strawberry_bottle"
-	list_reagents = list(/datum/reagent/consumable/soylent_strawberry = 30)
-
-/obj/item/reagent_containers/cup/glass/bottle/soylent_mint
-	name = "Soylent mint"
-	desc = "science-backed, sustainable, nutrition accessible, and affordable to all."
-	icon_state = "soylent_mint_bottle"
-	list_reagents = list(/datum/reagent/consumable/soylent_mint = 30)
-
-
 #undef BOTTLE_KNOCKDOWN_DEFAULT_DURATION
