@@ -31,6 +31,8 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	if(QDELETED(src))
 		return
 
+	// fuck you TG station
+	var/prefix = copytext(msg,1,2)
 	msg = trim(copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN))
 	var/raw_msg = msg
 
@@ -72,6 +74,36 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		to_chat(src, span_danger("You have OOC muted."))
 		return
 	mob.log_talk(raw_msg, LOG_OOC)
+
+	// redtext
+	// absolutely fucked shitcode i dont even know anymore
+	// its 1 AM and im dying out here also comments
+	// kinda look like greentext lol hahaha
+	//
+	// TODO: Come up with an algorithm that isnt completely fucked
+	// and supports more complex markdown
+	// Testing TG station code is also really fucking awful
+	// the compile time is so bad
+	// TG TRY NOT TO BE BLOATED CHALLENGE IMPOSSIBLE
+	var/first = findtext(msg, "==")
+	var/last = findlasttext(msg, "==")
+	if(first)
+		if(first == last)
+			msg = replacetext(msg, "==", "<font color='#af0a0f'>")
+			msg += "</font>"
+		else
+			msg = replacetext(msg, "==", "<font color='#af0a0f'>")
+			msg = replacetext(msg, "==", "</font>", first+1, last)
+
+	// >greentext and bluetext
+	// heckin wholesome!!!
+	switch(prefix)
+		if("<")
+			msg = "<font color='#f6750b'>[msg]</font>"
+		if(">")
+			msg = "<font color='#789922'>[msg]</font>"
+		if("^")
+			msg = "<font color='#4c4cff'>[msg]</font>"
 
 	var/keyname = key
 	if(!!IsByondMember())
