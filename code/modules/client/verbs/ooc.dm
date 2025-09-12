@@ -31,6 +31,8 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 	if(QDELETED(src))
 		return
 
+	// fuck you TG station
+	var/prefix = copytext(msg,1,2)
 	msg = trim(copytext_char(sanitize(msg), 1, MAX_MESSAGE_LEN))
 	var/raw_msg = msg
 
@@ -72,6 +74,37 @@ GLOBAL_VAR_INIT(normal_ooc_colour, "#002eb8")
 		to_chat(src, span_danger("You have OOC muted."))
 		return
 	mob.log_talk(raw_msg, LOG_OOC)
+
+// == red text
+	var/first_eq = findtext(msg, "==")
+	var/last_eq = findlasttext(msg, "==")
+	if(first_eq)
+		if(first_eq == last_eq)
+			msg = replacetext(msg, "==", "<span style='color:#af0a0f; font-size:20px;'>")
+			msg += "</span>"
+		else
+			msg = replacetext(msg, "==", "<span style='color:#af0a0f; font-size:20px;'>")
+			msg = replacetext(msg, "==", "</span>", first_eq+1, last_eq)
+
+// %% glowing text
+	var/first_glow = findtext(msg, "%%")
+	var/last_glow = findlasttext(msg, "%%")
+	if(first_glow)
+		if(first_glow == last_glow)
+			msg = replacetext(msg, "%%", "<span style='color:#00FF33; text-shadow:0 0 40px #00fe20, 0 0 5px #00fe20;'>")
+			msg += "</span>"
+		else
+			msg = replacetext(msg, "%%", "<span style='color:#00FF33; text-shadow:0 0 40px #00fe20, 0 0 5px #00fe20;'>")
+			msg = replacetext(msg, "%%", "</span>", first_glow+1, last_glow)
+
+// > greentext, < orange text, ^ bluetext
+	switch(prefix)
+		if("<")
+			msg = "<font color='#f6750b'>[msg]</font>"
+		if(">")
+			msg = "<font color='#789922'>[msg]</font>"
+		if("^")
+			msg = "<font color='#4c4cff'>[msg]</font>"
 
 	var/keyname = key
 	if(!!IsByondMember())
