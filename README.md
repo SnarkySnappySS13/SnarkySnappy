@@ -1,10 +1,5 @@
 # Snarky Snappy codebase
 
-[![Build Status](https://github.com/monkestation/monkestation2.0/workflows/CI%20Suite/badge.svg)](https://github.com/SnarkySnappySS13/SnarkySnappy/actions?query=workflow%3A%22CI+Suite%22)
-[![Percentage of issues still open](https://isitmaintained.com/badge/open/monkestation/monkestation2.0.svg)](https://isitmaintained.com/project/SnarkySnappySS13/SnarkySnappy "Percentage of issues still open")
-[![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/monkestation/monkestation2.0.svg)](https://isitmaintained.com/project/SnarkySnappySS13/SnarkySnappy "Average time to resolve an issue")
-![Coverage](https://img.shields.io/badge/coverage---3%25-red.svg)
-
 [![forthebadge](https://raw.githubusercontent.com/luckysharty/Snarky-Snappy/refs/heads/master/fueled%20by.png)](https://soylent.com/) [![resentment](https://raw.githubusercontent.com/luckysharty/Snarky-Snappy/refs/heads/master/BVILT%20WITH.png)](https://jakparty.soy/) [![resentment](https://raw.githubusercontent.com/luckysharty/Snarky-Snappy/refs/heads/master/contains%20autism.png)](https://soybooru.com) [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
 | Website                 | Link                                           |
