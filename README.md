@@ -9,7 +9,7 @@
 | Wiki                    | [https://wiki.soyjak.st/](https://wiki.soyjak.st/) |
 | Codedocs                | [https://codedocs.tgstation13.org/](https://codedocs.tgstation13.org/) |
 
-This is the codebase for the soicaca-flavored fork of Space Station 13.
+This is the codebase for the soicaca-flavored fork of Space Station 13. This repo is keyed off of the Monkestation codebase, this is a custom fork of that repo intended for use on our server, but feel free to host it if you'd like.
 
 Space Station 13 is an open-source tile-based A24 slowburn autistic role-playing video game created in 2003 by Exadv1, originally supposed to be an atmospheric simulator. It is now collectively maintained by its "community" and runs on the shitty freeware game engine BYOND, made sometime in 1996. SS13 dwarfs the other shitty Dragon Ball roleplay games on BYOND by thousands of players, which would have likely died in 2014 if it were not for SS13 singlehandedly keeping the entire platform alive. 
 
