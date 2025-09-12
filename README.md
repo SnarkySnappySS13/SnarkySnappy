@@ -26,7 +26,7 @@ Space Station 13 is an open-source tile-based A24 slowburn autistic role-playing
 
 [Maps and Away Missions](.github/guides/MAPS_AND_AWAY_MISSIONS.md)
 
-## :exclamation: How to compile :exclamation:
+## nobody gives a single fuck about this part but im keeping it for prosperity
 
 On **2021-01-04** we changed the way to compile the codebase.
 
