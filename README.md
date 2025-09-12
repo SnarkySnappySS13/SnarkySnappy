@@ -44,9 +44,6 @@ On **2021-01-04** we changed the way to compile the codebase.
 
 [/tg/station HACKMD account](https://hackmd.io/@tgstation) - Design documentation here
 
-[Interested in some starting lore?](https://github.com/tgstation/common_core)
-
-[Coding guidelines](https://hackmd.io/@MonkestationPooba/code_guidelines) - How and how not to code for Monkestation
 
 ## LICENSE
 
@@ -76,3 +73,5 @@ See the footer of [code/__DEFINES/tgs.dm](./code/__DEFINES/tgs.dm) and [code/mod
 [![forthebadge](https://forthebadge.com/images/badges/cc-by-sa.svg)](https://forthebadge.com)
 
 All assets, including icons and sound, are under a [Creative Commons 3.0 BY-SA license](https://creativecommons.org/licenses/by-sa/3.0/) unless otherwise indicated.
+
+^wordswordswords everything is apart of der bibisi license which means no ytbois
