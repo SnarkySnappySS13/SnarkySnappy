@@ -865,3 +865,17 @@
 	inhand_icon_state = "blahaj"
 	attack_verb_continuous = list("gnaws", "gnashes", "chews")
 	attack_verb_simple = list("gnaw", "gnash", "chew")
+
+/obj/item/toy/plush/shitoko_plushie
+	name = "shitoko plushie"
+	desc = "Mexican stuffed toy that resembles a national hero"
+	icon_state = "shitoko"
+	inhand_icon_state = null
+	attack_verb_continuous = list("braps", "braaps", "braaapps")
+	attack_verb_simple = list("brap", "braap", "braaapp")
+	squeak_override = list(
+	'sound/misc/fart1.ogg'=1,
+    'monkestation/sound/effects/fart2.ogg'=1,
+    'monkestation/sound/effects/fart3.ogg'=1,
+    'monkestation/sound/effects/fart4.ogg'=1,
+	)

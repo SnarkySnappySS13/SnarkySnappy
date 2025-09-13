@@ -1555,6 +1555,16 @@
 	icon_state = "yellowshirt"
 	gender = NEUTER
 
+/datum/sprite_accessory/undershirt/shirt_fnf
+	name = "T-Shirt (FNF)"
+	icon_state = "shirt_fnf"
+	gender = NEUTER
+
+/datum/sprite_accessory/undershirt/shirt_mexico
+	name = "Shirt (Mexico)"
+	icon_state = "shirt_mexico"
+	gender = NEUTER
+
 ///////////////////////
 // Socks Definitions //
 ///////////////////////
