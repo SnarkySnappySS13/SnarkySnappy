@@ -536,7 +536,7 @@
 	..()
 
 /datum/reagent/consumable/lemon_lime
-	name = "Lemon Lime"
+	name = "Lemon-lime"
 	description = "A tangy substance made of 0.5% natural citrus!"
 	color = "#8CFF00" // rgb: 135, 255, 0
 	taste_description = "tangy lime and lemon soda"
@@ -1218,6 +1218,21 @@
 	var/obj/item/organ/internal/stomach/ethereal/stomach = exposed_carbon.get_organ_slot(ORGAN_SLOT_STOMACH)
 	if(istype(stomach))
 		stomach.adjust_charge(reac_volume * 3)
+
+/datum/reagent/consumable/sproke
+	name = "Sproke"
+	description = "A refreshingly sweet and sour beverage. Claimed by some to reduce the symptoms of mental illness."
+	metabolization_rate = 1
+	color = "#CDD0A3"
+	taste_description = "cola and lemon soda"
+
+/datum/reagent/consumable/sproke/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
+	if(affected_mob.mob_mood != null && affected_mob.mob_mood.sanity <= SANITY_NEUTRAL)
+		affected_mob.mob_mood.set_sanity(min(affected_mob.mob_mood.sanity + (2 * REM * seconds_per_tick), SANITY_NEUTRAL))
+	if (affected_mob.get_timed_status_effect_duration(/datum/status_effect/hallucination) >= 1 SECONDS)
+		affected_mob.adjust_hallucinations(-1 SECONDS * REM * seconds_per_tick)
+	..()
+	. = TRUE
 
 /datum/reagent/consumable/soylent
 	name = "Soylent"

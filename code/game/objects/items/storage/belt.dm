@@ -564,6 +564,7 @@
 			/obj/item/reagent_containers/cup/soda_cans/space_mountain_wind,
 			/obj/item/reagent_containers/cup/soda_cans/space_up,
 			/obj/item/reagent_containers/cup/soda_cans/starkist,
+			/obj/item/reagent_containers/cup/soda_cans/sproke,
 		))
 		new rig_snacks(src)
 
