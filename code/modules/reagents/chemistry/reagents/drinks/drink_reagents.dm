@@ -1254,7 +1254,7 @@
 /datum/reagent/consumable/soylent_mint
 	name = "Soylent mint"
 	description = "Thick, nutritious mint shake"
-	color = "#9DC3A5"
+	color = "#89BE94"
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	taste_description = "mint"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
