@@ -9,11 +9,11 @@
 		/obj/item/reagent_containers/cup/glass/coffee = 6,
 		/obj/item/reagent_containers/cup/glass/mug/tea = 6,
 		/obj/item/reagent_containers/cup/glass/mug/coco = 3,
-		/obj/item/reagent_containers/cup/glass/bottle/soylent = 3,
-		/obj/item/reagent_containers/cup/glass/bottle/soylent_cacao = 3,
-		/obj/item/reagent_containers/cup/glass/bottle/soylent_banana = 3,
-		/obj/item/reagent_containers/cup/glass/bottle/soylent_strawberry = 3,
-		/obj/item/reagent_containers/cup/glass/bottle/soylent_mint = 3,
+		/obj/item/reagent_containers/cup/glass/waterbottle/soylent = 3,
+		/obj/item/reagent_containers/cup/glass/waterbottle/soylent/cacao = 3,
+		/obj/item/reagent_containers/cup/glass/waterbottle/soylent/banana = 3,
+		/obj/item/reagent_containers/cup/glass/waterbottle/soylent/strawberry = 3,
+		/obj/item/reagent_containers/cup/glass/waterbottle/soylent/mint = 3,
 	)
 	contraband = list(
 		/obj/item/reagent_containers/cup/glass/ice = 12,

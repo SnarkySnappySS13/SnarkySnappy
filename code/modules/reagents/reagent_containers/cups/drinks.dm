@@ -559,37 +559,34 @@
 	volume = 30
 	spillable = TRUE
 
-/obj/item/reagent_containers/cup/glass/bottle/soylent // I don't know how recipes work but this would be the feedstock <- Sneed's Feedstock and Seedstock
+/obj/item/reagent_containers/cup/glass/waterbottle/soylent // I don't know how recipes work but this would be the feedstock <- Sneed's Feedstock and Seedstock
 	name = "Soylent"
 	desc = "Science-backed, sustainable, nutrition accessible, and affordable to all."
-	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "soylent_bottle"
 	list_reagents = list(/datum/reagent/consumable/soylent = 30)
+	cap_icon_state = "soylent_cap"
+	cap_on = TRUE
 
-/obj/item/reagent_containers/cup/glass/bottle/soylent_cacao
+/obj/item/reagent_containers/cup/glass/waterbottle/soylent/cacao
 	name = "Soylent cacao"
 	desc = "Science-backed, sustainable, nutrition accessible, and affordable to all. This bottle is cacao-flavored."
-	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "soylent_cacao_bottle"
 	list_reagents = list(/datum/reagent/consumable/soylent_cacao = 30)
 
-/obj/item/reagent_containers/cup/glass/bottle/soylent_banana
+/obj/item/reagent_containers/cup/glass/waterbottle/soylent/banana
 	name = "Soylent banana"
 	desc = "Science-backed, sustainable, nutrition accessible, and affordable to all. This bottle is banana-flavored."
-	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "soylent_banana_bottle"
 	list_reagents = list(/datum/reagent/consumable/soylent_banana = 30)
 
-/obj/item/reagent_containers/cup/glass/bottle/soylent_strawberry
+/obj/item/reagent_containers/cup/glass/waterbottle/soylent/strawberry
 	name = "Soylent strawberry"
 	desc = "Science-backed, sustainable, nutrition accessible, and affordable to all. This bottle is strawberry-flavored."
-	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "soylent_strawberry_bottle"
 	list_reagents = list(/datum/reagent/consumable/soylent_strawberry = 30)
 
-/obj/item/reagent_containers/cup/glass/bottle/soylent_mint
+/obj/item/reagent_containers/cup/glass/waterbottle/soylent/mint
 	name = "Soylent mint"
 	desc = "Science-backed, sustainable, nutrition accessible, and affordable to all. This bottle is mint-flavored."
-	icon = 'icons/obj/drinks/bottles.dmi'
 	icon_state = "soylent_mint_bottle"
 	list_reagents = list(/datum/reagent/consumable/soylent_mint = 30)

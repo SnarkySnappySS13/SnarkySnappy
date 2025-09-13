@@ -1221,7 +1221,7 @@
 
 /datum/reagent/consumable/soylent
 	name = "Soylent"
-	description = "Thick nutritious shake"
+	description = "Thick, nutritious shake"
 	color = "#DFDFDF"
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	taste_description = "cereal milk"
@@ -1229,7 +1229,7 @@
 
 /datum/reagent/consumable/soylent_cacao
 	name = "Soylent cacao"
-	description = "Thick nutritious shake"
+	description = "Thick, nutritious cacao shake"
 	color = "#C79C8A"
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	taste_description = "milky cacao"
@@ -1237,7 +1237,7 @@
 
 /datum/reagent/consumable/soylent_banana
 	name = "Soylent banana"
-	description = "Thick nutritious shake"
+	description = "Thick, nutritious banana shake"
 	color = "#DDBC6D"
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	taste_description = "milky banana"
@@ -1245,7 +1245,7 @@
 
 /datum/reagent/consumable/soylent_strawberry
 	name = "Soylent strawberry"
-	description = "Thick nutritious shake"
+	description = "Thick, nutritious strawberry shake"
 	color = "#D74750"
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	taste_description = "milky strawberry"
@@ -1253,7 +1253,7 @@
 
 /datum/reagent/consumable/soylent_mint
 	name = "Soylent mint"
-	description = "Thick nutritious shake"
+	description = "Thick, nutritious mint shake"
 	color = "#9DC3A5"
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	taste_description = "mint"
