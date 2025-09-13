@@ -1,0 +1,8 @@
+author: "MaxChudiusV"
+delete-after: True
+changes:
+  - rscadd: "Soylent can now be capped and uncapped"
+  - image: "Center soylent icon and separate its cap from the texture"
+  - refactor: "Soylent moved to drinks.dm"
+  - refactor: "Soylent reagents' descriptions changed"
+  - refactor: "Soylent mint's color changed"
