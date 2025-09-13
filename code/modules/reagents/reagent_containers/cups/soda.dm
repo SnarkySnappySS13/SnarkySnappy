@@ -339,7 +339,7 @@
 
 /obj/item/reagent_containers/cup/soda_cans/sproke
 	name = "Sproke"
-	desc = "\"It's fucking Sproke time, dude!\". Now in the controversial canned form!"
+	desc = "\"I've got the sprite, and you've got the coke. It's fucking Sproke time, dude!\". Now in the ever-controversial canned form, banned in 22 sectors!"
 	icon_state = "sproke"
 	list_reagents = list(/datum/reagent/consumable/sproke = 30)
 	drink_type = SUGAR | FRUIT | JUNKFOOD
