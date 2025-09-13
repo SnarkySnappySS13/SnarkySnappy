@@ -1,24 +1,17 @@
-# Test
-# monkestation codebase
+# Snarky Snappy codebase
 
-[![Build Status](https://github.com/monkestation/monkestation2.0/workflows/CI%20Suite/badge.svg)](https://github.com/monkestation/monkestation2.0/actions?query=workflow%3A%22CI+Suite%22)
-[![Percentage of issues still open](https://isitmaintained.com/badge/open/monkestation/monkestation2.0.svg)](https://isitmaintained.com/project/monkestation/monkestation2.0 "Percentage of issues still open")
-[![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/monkestation/monkestation2.0.svg)](https://isitmaintained.com/project/monkestation/monkestation2.0 "Average time to resolve an issue")
-![Coverage](https://img.shields.io/badge/coverage---3%25-red.svg)
-
-[![forthebadge](monkestation/badges/fueled-by-potassium.svg)](https://forthebadge.com) [![resentment](https://forthebadge.com/images/badges/built-with-resentment.svg)](https://www.monkeyuser.com/assets/images/2019/131-bug-free.png) [![resentment](https://forthebadge.com/images/badges/contains-technical-debt.svg)](https://user-images.githubusercontent.com/8171642/50290880-ffef5500-043a-11e9-8270-a2e5b697c86c.png) [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
+[![forthebadge](https://raw.githubusercontent.com/luckysharty/Snarky-Snappy/refs/heads/master/fueled%20by.png)](https://soylent.com/) [![resentment](https://raw.githubusercontent.com/luckysharty/Snarky-Snappy/refs/heads/master/BVILT%20WITH.png)](https://jakparty.soy/) [![resentment](https://raw.githubusercontent.com/luckysharty/Snarky-Snappy/refs/heads/master/contains%20autism.png)](https://soybooru.com) [![forinfinityandbyond](https://user-images.githubusercontent.com/5211576/29499758-4efff304-85e6-11e7-8267-62919c3688a9.gif)](https://www.reddit.com/r/SS13/comments/5oplxp/what_is_the_main_problem_with_byond_as_an_engine/dclbu1a)
 
 | Website                 | Link                                           |
 |-------------------------|------------------------------------------------|
-| Website                 | [https://monkestation.com/](https://monkestation.com/) |
-| Code                    | [https://github.com/Monkestation/Monkestation2.0](https://github.com/Monkestation/Monkestation2.0) |
-| Wiki                    | [https://wiki.monkestation.com/](https://wiki.monkestation.com/) |
+| Website                 | [https://soyjak.st/](https://soyjak.st/) |
+| Code                    | [https://github.com/SnarkySnappySS13/SnarkySnappy](https://github.com/SnarkySnappySS13/SnarkySnappy) |
+| Wiki                    | [https://wiki.soyjak.st/](https://wiki.soyjak.st/) |
 | Codedocs                | [https://codedocs.tgstation13.org/](https://codedocs.tgstation13.org/) |
-| monkestation Discord    | [https://discord.com/invite/monkestation](https://discord.com/invite/monkestation) |
 
-This is the codebase for the monkestation-flavored fork of Space Station 13.
+This is the codebase for the soicaca-flavored fork of Space Station 13. This repo is keyed off of the Monkestation codebase, this is a custom fork of that repo intended for use on our server, but feel free to host it if you'd like.
 
-Space Station 13 is a paranoia-laden, round-based roleplaying game set against the backdrop of a nonsensical, metal death trap masquerading as a space station, with charming spritework designed to represent the sci-fi setting and its dangerous undertones. Have fun, and survive!
+Space Station 13 is an open-source tile-based A24 slowburn autistic role-playing video game created in 2003 by Exadv1, originally supposed to be an atmospheric simulator. It is now collectively maintained by its "community" and runs on the shitty freeware game engine BYOND, made sometime in 1996. SS13 dwarfs the other shitty Dragon Ball roleplay games on BYOND by thousands of players, which would have likely died in 2014 if it were not for SS13 singlehandedly keeping the entire platform alive. 
 
 ## DOWNLOADING
 
@@ -28,7 +21,7 @@ Space Station 13 is a paranoia-laden, round-based roleplaying game set against t
 
 [Maps and Away Missions](.github/guides/MAPS_AND_AWAY_MISSIONS.md)
 
-## :exclamation: How to compile :exclamation:
+## nobody gives a single fuck about this part but im keeping it for prosperity
 
 On **2021-01-04** we changed the way to compile the codebase.
 
@@ -46,9 +39,6 @@ On **2021-01-04** we changed the way to compile the codebase.
 
 [/tg/station HACKMD account](https://hackmd.io/@tgstation) - Design documentation here
 
-[Interested in some starting lore?](https://github.com/tgstation/common_core)
-
-[Coding guidelines](https://hackmd.io/@MonkestationPooba/code_guidelines) - How and how not to code for Monkestation
 
 ## LICENSE
 
@@ -78,3 +68,5 @@ See the footer of [code/__DEFINES/tgs.dm](./code/__DEFINES/tgs.dm) and [code/mod
 [![forthebadge](https://forthebadge.com/images/badges/cc-by-sa.svg)](https://forthebadge.com)
 
 All assets, including icons and sound, are under a [Creative Commons 3.0 BY-SA license](https://creativecommons.org/licenses/by-sa/3.0/) unless otherwise indicated.
+
+^wordswordswords everything is apart of der bibisi license which means no ytbois
