@@ -196,15 +196,11 @@
 	list_reagents = list(/datum/reagent/consumable/sodawater = 50)
 
 /obj/item/reagent_containers/cup/soda_cans/lemon_lime
-	name = "orange soda"
-	desc = "You wanted ORANGE. It gave you Lemon Lime."
+	name = "Lemon-lime soda"
+	desc = "Sour with the tangy kick from the lime. 0.5% citrus!"
 	icon_state = "lemon-lime"
 	list_reagents = list(/datum/reagent/consumable/lemon_lime = 30)
-	drink_type = FRUIT
-
-/obj/item/reagent_containers/cup/soda_cans/lemon_lime/Initialize(mapload)
-	. = ..()
-	name = "lemon-lime soda"
+	drink_type = FRUIT | JUNKFOOD
 
 /obj/item/reagent_containers/cup/soda_cans/sol_dry
 	name = "Sol Dry"
@@ -340,3 +336,10 @@
 		if("Moonlabor Malt's")
 			icon_state = "moonlabor"
 			desc = "Mars' underdog rice beer brand. Popular amongst the Yakuza, for reasons unknown."
+
+/obj/item/reagent_containers/cup/soda_cans/sproke
+	name = "Sproke"
+	desc = "\"I've got the sprite, and you've got the coke. It's fucking Sproke time, dude!\". Now in the ever-controversial canned form, banned in 22 sectors!"
+	icon_state = "sproke"
+	list_reagents = list(/datum/reagent/consumable/sproke = 30)
+	drink_type = SUGAR | FRUIT | JUNKFOOD

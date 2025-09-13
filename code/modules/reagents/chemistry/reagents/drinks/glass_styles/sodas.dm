@@ -116,3 +116,10 @@
 	desc = "It's sharp, it's sour, it's electrifying!"
 	icon = 'icons/obj/drinks/drinks.dmi'
 	icon_state = "volt_energy"
+
+/datum/glass_style/drinking_glass/sproke
+	required_drink_type = /datum/reagent/consumable/sproke
+	name = "glass of Sproke"
+	desc = "Enjoyed by soyboys and chuds alike. Sprite and Coke sold separately in this sector to skirt regulations."
+	icon = 'icons/obj/drinks/drinks.dmi'
+	icon_state = "sproke"

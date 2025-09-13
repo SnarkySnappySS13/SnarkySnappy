@@ -536,7 +536,7 @@
 	..()
 
 /datum/reagent/consumable/lemon_lime
-	name = "Lemon Lime"
+	name = "Lemon-lime"
 	description = "A tangy substance made of 0.5% natural citrus!"
 	color = "#8CFF00" // rgb: 135, 255, 0
 	taste_description = "tangy lime and lemon soda"
@@ -1219,9 +1219,24 @@
 	if(istype(stomach))
 		stomach.adjust_charge(reac_volume * 3)
 
+/datum/reagent/consumable/sproke
+	name = "Sproke"
+	description = "A refreshingly sweet and sour beverage. Claimed by some to reduce the symptoms of mental illness."
+	metabolization_rate = 1
+	color = "#CDD0A3"
+	taste_description = "cola and lemon soda"
+
+/datum/reagent/consumable/sproke/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
+	if(affected_mob.mob_mood != null && affected_mob.mob_mood.sanity <= SANITY_NEUTRAL)
+		affected_mob.mob_mood.set_sanity(min(affected_mob.mob_mood.sanity + (2 * REM * seconds_per_tick), SANITY_NEUTRAL))
+	if (affected_mob.get_timed_status_effect_duration(/datum/status_effect/hallucination) >= 1 SECONDS)
+		affected_mob.adjust_hallucinations(-1 SECONDS * REM * seconds_per_tick)
+	..()
+	. = TRUE
+
 /datum/reagent/consumable/soylent
 	name = "Soylent"
-	description = "Thick nutritious shake"
+	description = "Thick, nutritious shake"
 	color = "#DFDFDF"
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	taste_description = "cereal milk"
@@ -1229,7 +1244,7 @@
 
 /datum/reagent/consumable/soylent_cacao
 	name = "Soylent cacao"
-	description = "Thick nutritious shake"
+	description = "Thick, nutritious cacao shake"
 	color = "#C79C8A"
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	taste_description = "milky cacao"
@@ -1237,7 +1252,7 @@
 
 /datum/reagent/consumable/soylent_banana
 	name = "Soylent banana"
-	description = "Thick nutritious shake"
+	description = "Thick, nutritious banana shake"
 	color = "#DDBC6D"
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	taste_description = "milky banana"
@@ -1245,7 +1260,7 @@
 
 /datum/reagent/consumable/soylent_strawberry
 	name = "Soylent strawberry"
-	description = "Thick nutritious shake"
+	description = "Thick, nutritious strawberry shake"
 	color = "#D74750"
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	taste_description = "milky strawberry"
@@ -1253,8 +1268,8 @@
 
 /datum/reagent/consumable/soylent_mint
 	name = "Soylent mint"
-	description = "Thick nutritious shake"
-	color = "#9DC3A5"
+	description = "Thick, nutritious mint shake"
+	color = "#89BE94"
 	nutriment_factor = 5 * REAGENTS_METABOLISM
 	taste_description = "mint"
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
