@@ -1228,7 +1228,7 @@
 	chemical_flags = REAGENT_CAN_BE_SYNTHESIZED
 /datum/reagent/consumable/sproke/overdose_process(mob/living/affected_mob, seconds_per_tick, times_fired) // OY! DOCTOS! I'M SPROKING OUT!
 	affected_mob.set_jitter_if_lower(10 SECONDS * REM * seconds_per_tick)
-	affected_mob.adjust_hallucinations_up_to(30 SECONDS * REM * seconds_per_tick, 90 SECONDS)
+	affected_mob.adjust_hallucinations_up_to(10 SECONDS * REM * seconds_per_tick, 120 SECONDS)
 	..()
 
 /datum/reagent/consumable/sproke/on_mob_life(mob/living/carbon/affected_mob, seconds_per_tick, times_fired)
