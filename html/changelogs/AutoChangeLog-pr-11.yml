@@ -1,0 +1,5 @@
+author: "MaxChudiusV"
+delete-after: True
+changes:
+  - rscadd: "Sproke overdose mechanic"
+  - image: "Change the crushed Sproke can texture to have more contrast on the edges"
