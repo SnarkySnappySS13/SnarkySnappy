@@ -1222,7 +1222,6 @@
 /datum/reagent/consumable/sproke
 	name = "Sproke"
 	description = "A refreshingly sweet and sour beverage. Claimed by some to reduce the symptoms of mental illness. By others, to make them worse."
-	metabolization_rate = 1
 	color = "#CDD0A3"
 	overdose_threshold = 90
 	taste_description = "cola and lemon soda"
