@@ -285,3 +285,77 @@ monkestation edit end */
 		var/obj/item/organ/internal/butt/booty = user.get_organ_by_type(/obj/item/organ/internal/butt)
 		if(!booty.cooling_down)
 			booty.On_Fart(user)
+
+/datum/emote/living/carbon/human/doctos
+	key = "doctos"
+	key_third_person = "doctos"
+	message = "loudly screams \"DOCTOS\"! "
+	message_mime = "sildentl screams \"DOCTOS\"."
+	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
+	//cooldown = 10 SECONDS // no spammy spam spam pls
+	// fuck it. no cooldown. DOCTOS doesnt need a cooldown
+	// Cooldowns are just rulecucked features anyway fuck you
+
+#define DOCTOS_FROG  0
+#define DOCTOS_LESOTHO 1
+#define DOCTOS_NORMAL 2
+
+/datum/emote/living/carbon/human/doctos/run_emote(mob/living/carbon/human/user, params, type_override, intentional)
+	. = ..()
+	var/doctos_type = DOCTOS_NORMAL
+	var/list/sound2play = list(
+		'sound/voice/doctos/Doctosvoice1.ogg',
+		'sound/voice/doctos/Doctosvoice2.ogg',
+		'sound/voice/doctos/Doctosvoice3.ogg',
+		'sound/voice/doctos/Doctosvoice4.ogg'
+	)
+
+	if(user.skin_tone == "frog")
+		doctos_type = DOCTOS_FROG
+		sound2play = list('sound/voice/doctos/ribit1.mp3')
+	else if(user.skin_tone == "african1" || user.skin_tone == "african2")
+		doctos_type = DOCTOS_LESOTHO
+	else if(prob(1))
+		doctos_type = DOCTOS_LESOTHO
+
+	if(doctos_type == DOCTOS_LESOTHO)
+		sound2play = list(
+			'sound/voice/doctos/lesothovoice1.mp3',
+			'sound/voice/doctos/lesothovoice2.mp3',
+			'sound/voice/doctos/lesothovoice3.mp3',
+			'sound/voice/doctos/lesothovoice4.mp3'
+		)
+
+	var/image/soyjack = image(
+		icon = 'icons/hud/doctos.dmi',
+		icon_state = "[doctos_type]",
+		loc = user.loc,
+		layer = HUD_PLANE
+	)
+	soyjack.pixel_y = 32
+	soyjack.alpha = 0
+	soyjack.plane = HUD_PLANE
+
+	// yeah I dont wanna initalize a fucking effect obj
+	// just for a shitty visual effect
+	// Probably has no impact on performance what-so-ever lol
+	for(var/client/C in GLOB.clients)
+		C.images |= soyjack
+
+	// DO NOT FUCKING FLICKER (goon) YOU DUMB PIECE OF SHIT
+	soyjack.alpha = 0
+	animate(soyjack, alpha = 255, time = 2)
+	// ok the flicker gooning stays whatever
+
+	playsound(user, pick(sound2play), 30, FALSE)
+
+	// Nested spawns look ugly lol
+	spawn(10)
+		animate(soyjack, alpha = 0, time = 2)
+		spawn(2)
+			for(var/client/C in GLOB.clients)
+				C.images -= soyjack
+
+#undef DOCTOS_FROG
+#undef DOCTOS_LESOTHO
+#undef DOCTOS_NORMAL
