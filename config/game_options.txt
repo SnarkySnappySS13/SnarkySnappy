@@ -342,8 +342,9 @@ SILICON_MAX_LAW_AMOUNT 15
 
 ## See code/__DEFINES/DNA.dm for more options than the ones below.
 
-## You probably want humans on your space station, but technically speaking you can turn them off without any ill effect
+## You probably want humans and frogs on your soy station, but technically speaking you can turn them off without any ill effect
 ROUNDSTART_RACES human
+ROUNDSTART_RACES frog
 
 ## Races that are strictly worse than humans that could probably be turned on without balance concerns
 ROUNDSTART_RACES lizard

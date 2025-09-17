@@ -11,7 +11,7 @@
 	species_cookie = /obj/item/food/meat/slab/human/mutant/fly
 	meat = /obj/item/food/meat/slab/human/mutant/frog
 	skinned_type = /obj/item/stack/sheet/animalhide/frog
-	inert_mutation = /datum/mutation/human/leakyskin
+	inert_mutation = /datum/mutation/human/leakage
 	death_sound = 'sound/voice/lizard/deathsound.ogg'
 	species_language_holder = /datum/language_holder/frog
 
@@ -46,16 +46,10 @@
 
 	to_add += list(list(
 		SPECIES_PERK_TYPE = SPECIES_NEUTRAL_PERK,
-		SPECIES_PERK_ICON = "FA_ICON_DNA",
+		SPECIES_PERK_ICON = FA_ICON_DNA,
 		SPECIES_PERK_NAME = "Common Genetics",
 		SPECIES_PERK_DESC = "As a result of being a species made entirely out of clones, you share \
-		physical characteristics and DNA with every other frog on the station.", // TODO: implement the DNA thing geg
-
-	to_add += list(list(
-		SPECIES_PERK_TYPE = SPECIES_POSITIVE_PERK,
-		SPECIES_PERK_ICON = "FA_ICON_FACE_LAUGH",
-		SPECIES_PERK_NAME = "Contagious Laughter",
-		SPECIES_PERK_DESC = "Frog culture values laughter and it is common practice for a mild giggle to turn into a laughing spree!",
+		physical characteristics with every other frog on the station.", //
 	))
 
 	to_add += list(list(

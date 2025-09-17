@@ -203,7 +203,7 @@
 /datum/emote/living/geg // TODO: figure out how to make it GEG instead of laugh, it's either here or in tongue code
 	key = "geg"
 	key_third_person = "gegs"
-	message = "GEEEEEGs!",
+	message = "GEEEEEGs!"
 	message_param = "GEEEEEGs at %t!"
 	message_mime = "GEEEEEGs silently!"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
@@ -378,7 +378,7 @@ monkestation edit end */
 /datum/emote/living/ree // TODO: figure out how to make it REE instead of scream, it's either here or in tongue code
 	key = "ree"
 	key_third_person = "rees"
-	message = "REEEES!",
+	message = "REEEES!"
 	message_mime = "turns as red as a tomato!"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	stat_allowed = HARD_CRIT // funny
@@ -390,13 +390,13 @@ monkestation edit end */
 /datum/emote/living/ree/get_sound(mob/living/user)
 	return pick(
 		'sharty/sound/voice/frog/ree.ogg',
-		'sound/effects/reee.ogg'
+		'sound/effects/reee.ogg',
 	)
 
 /datum/emote/living/ribbit
 	key = "ribbit"
 	key_third_person = "ribbits"
-	message = "ribbits.",
+	message = "ribbits."
 	message_mime = "inflates their mouth!"
 	emote_type = EMOTE_VISIBLE | EMOTE_AUDIBLE
 	vary = TRUE
@@ -405,7 +405,7 @@ monkestation edit end */
 	return ..() && isfrog(user)
 
 /datum/emote/living/ribbit/get_sound(mob/living/user)
-	return 'sharty/sounds/voice/frog/ribbit.ogg'
+	return 'sharty/sound/voice/frog/ribbit.ogg'
 
 /datum/emote/living/scream/select_message_type(mob/user, message, intentional)
 	. = ..()

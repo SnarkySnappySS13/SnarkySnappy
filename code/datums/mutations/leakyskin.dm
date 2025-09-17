@@ -4,7 +4,7 @@
 	quality = POSITIVE
 	text_gain_indication = span_notice("Your skin is dripping like a faucet.")
 	instability = 30
-	power_path = /datum/action/cooldown/spell/leak
+	power_path = /datum/action/cooldown/spell/leakage
 
 	energy_coeff = 1
 	synchronizer_coeff = 1
@@ -23,8 +23,10 @@
 
 /datum/action/cooldown/spell/leakage/cast(mob/living/carbon/cast_on)
 	. = ..()
-	var/turf/leakspot = get_turf(cast_on)
+	var/turf/open/leakspot = get_turf(cast_on)
+
 	playsound(leakspot, 'sound/effects/slosh.ogg', 50, TRUE)
-	leakspot.add_liquid(/datum/reagent/water, 40, FALSE, 300)
+	leakspot.MakeSlippery(TURF_WET_WATER, min_wet_time = 10 SECONDS, wet_time_to_add = 5 SECONDS)
+	leakspot.add_liquid(/datum/reagent/water, 80, FALSE, 300)
 	cast_on.adjust_fire_stacks(-20) //so it extinguishes u even in lava
-	cast_on.visible_message(span_danger("[cast_on] sweats a giant puddle on the floor!"))
+	cast_on.visible_message(span_danger("[cast_on] leaks a giant puddle on the floor!"))
