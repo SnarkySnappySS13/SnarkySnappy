@@ -694,6 +694,11 @@
 #undef UPDATE_EYES_LEFT
 #undef UPDATE_EYES_RIGHT
 
+/obj/item/organ/internal/eyes/frog
+	name = "frog eyes"
+	desc = "These eyes seem to have lines under the pupils." // DOCTOOOOS
+	icon_state = "eyeballs-frog"
+
 /obj/item/organ/internal/eyes/moth
 	name = "moth eyes"
 	desc = "These eyes seem to have increased sensitivity to bright light, with no improvement to low light vision."
