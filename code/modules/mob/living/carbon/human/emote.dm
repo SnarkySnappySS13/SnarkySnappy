@@ -295,6 +295,7 @@ monkestation edit end */
 	//cooldown = 10 SECONDS // no spammy spam spam pls
 	// fuck it. no cooldown. DOCTOS doesnt need a cooldown
 	// Cooldowns are just rulecucked features anyway fuck you
+	// tsmt ^^^
 
 #define DOCTOS_FROG  0
 #define DOCTOS_LESOTHO 1
@@ -310,7 +311,7 @@ monkestation edit end */
 		'sound/voice/doctos/Doctosvoice4.ogg'
 	)
 
-	if(user.skin_tone == "frog")
+	if(isfrog(user))
 		doctos_type = DOCTOS_FROG
 		sound2play = list('sound/voice/doctos/ribit1.mp3')
 	else if(user.skin_tone == "african1" || user.skin_tone == "african2")
