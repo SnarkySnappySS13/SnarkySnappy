@@ -5,7 +5,7 @@
 
 # byond version
 export BYOND_MAJOR=516
-export BYOND_MINOR=1659
+export BYOND_MINOR=1669
 
 #rust_g git tag
 export RUST_G_VERSION=3.9.0
@@ -23,4 +23,4 @@ export PYTHON_VERSION=3.9.0
 export DREAMLUAU_REPO="tgstation/dreamluau"
 
 #dreamluau git tag
-export DREAMLUAU_VERSION=0.1.3
+export DREAMLUAU_VERSION=0.1.4

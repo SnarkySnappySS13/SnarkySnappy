@@ -1,5 +1,5 @@
 # base = ubuntu + full apt update
-FROM ubuntu:xenial AS base
+FROM ubuntu:noble AS base
 RUN dpkg --add-architecture i386 \
     && apt-get update \
     && apt-get upgrade -y \
@@ -15,7 +15,8 @@ RUN apt-get install -y --no-install-recommends \
         curl \
         unzip \
         make \
-        libstdc++6:i386
+        libstdc++6:i386 \
+        libcurl4:i386
 
 COPY dependencies.sh .
 
@@ -35,7 +36,8 @@ FROM byond AS build
 WORKDIR /tgstation
 
 RUN apt-get install -y --no-install-recommends \
-        curl
+        curl \
+        rsync
 
 COPY . .
 
@@ -49,7 +51,7 @@ RUN apt-get install -y --no-install-recommends \
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --profile minimal \
     && ~/.cargo/bin/rustup target add i686-unknown-linux-gnu
 
-# rust_g = base + rust_g compiled to /rust_g
+# rust_g = rust + rust_g compiled to /rust_g
 FROM rust AS rust_g
 WORKDIR /rust_g
 
@@ -68,17 +70,41 @@ RUN . ./dependencies.sh \
     && git checkout FETCH_HEAD \
     && env PKG_CONFIG_ALLOW_CROSS=1 ~/.cargo/bin/cargo build --release --target i686-unknown-linux-gnu
 
-# final = byond + runtime deps + rust_g + build
+
+# dreamluau = rust + dreamluau compiled to /dreamluau
+FROM rust AS dreamluau
+WORKDIR /dreamluau
+
+RUN apt-get install -y --no-install-recommends \
+        pkg-config:i386 \
+        libssl-dev:i386 \
+        zlib1g-dev:i386 \
+        gcc-multilib \
+        g++-multilib \
+        libclang-dev \
+        git \
+    && git init \
+    && git remote add origin https://github.com/tgstation/dreamluau
+
+COPY dependencies.sh .
+
+RUN . ./dependencies.sh \
+    && git fetch --depth 1 origin "${DREAMLUAU_VERSION}" \
+    && git checkout FETCH_HEAD \
+    && env PKG_CONFIG_ALLOW_CROSS=1 ~/.cargo/bin/cargo build --ignore-rust-version --release --target=i686-unknown-linux-gnu
+
+# final = byond + runtime deps + rust_g + dreamluau + build
 FROM byond
 WORKDIR /tgstation
 
 RUN apt-get install -y --no-install-recommends \
-        libssl1.0.0:i386 \
+        libssl3:i386 \
         zlib1g:i386
 
 COPY --from=build /deploy ./
 COPY --from=rust_g /rust_g/target/i686-unknown-linux-gnu/release/librust_g.so ./librust_g.so
+COPY --from=dreamluau /dreamluau/target/i686-unknown-linux-gnu/release/libdreamluau.so ./libdreamluau.so
 
 VOLUME [ "/tgstation/config", "/tgstation/data" ]
-ENTRYPOINT [ "DreamDaemon", "tgstation.dmb", "-port", "1337", "-trusted", "-close", "-verbose" ]
-EXPOSE 1337
+ENTRYPOINT [ "DreamDaemon", "tgstation.dmb", "-port", "8888", "-trusted", "-close", "-verbose" ]
+EXPOSE 8888
