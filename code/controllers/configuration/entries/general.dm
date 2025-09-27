@@ -315,16 +315,16 @@
 /datum/config_entry/string/banappeals
 
 /datum/config_entry/string/wikiurl
-	default = "http://www.tgstation13.org/wiki"
+	default = "https://soyjakwiki.org/Space_Station_13/List_of_guides"
 
 /datum/config_entry/string/forumurl
-	default = "http://tgstation13.org/phpBB/index.php"
+	default = "https://soyjak.st/ss/"
 
 /datum/config_entry/string/rulesurl
-	default = "http://www.tgstation13.org/wiki/Rules"
+	default = "https://soyjak.st/ss/thread/1.html#2259"
 
 /datum/config_entry/string/githuburl
-	default = "https://www.github.com/tgstation/tgstation"
+	default = "https://github.com/SnarkySnappySS13/SnarkySnappy"
 
 /datum/config_entry/string/discordbotcommandprefix
 	default = "?"
